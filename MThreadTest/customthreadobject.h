@@ -11,6 +11,7 @@ public:
     ~CustomThreadObject();
 
 signals:
+    void signalResultReady(const int value);
 
 public slots:
 

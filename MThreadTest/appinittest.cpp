@@ -14,6 +14,11 @@ AppInitTest::AppInitTest(QObject *parent)
 
 AppInitTest::~AppInitTest()
 {
+    if (m_pCusThreadObj)
+    {
+        delete m_pCusThreadObj;
+        m_pCusThreadObj = NULL;
+    }
     if (m_pThread)
     {
         if (m_pThread->isRunning())
@@ -24,12 +29,13 @@ AppInitTest::~AppInitTest()
         delete m_pThread;
         m_pThread = NULL;
     }
-
-
-    if (m_pCusThreadObj)
-    {
-        delete m_pCusThreadObj;
-        m_pCusThreadObj = NULL;
+    if (m_pTimer){
+        if (m_pTimer->isActive())
+        {
+            m_pTimer->stop();
+        }
+        delete m_pTimer;
+        m_pTimer = NULL;
     }
 }
 
@@ -40,11 +46,20 @@ void AppInitTest::init()
     m_pCusThreadObj->moveToThread(m_pThread);
 
     connect(m_pThread,SIGNAL(started()),m_pCusThreadObj,SLOT(slotStart()));
-    //    connect(m_pThread,SIGNAL(finished()),m_pCusThreadObj,SLOT(deleteLater()));
-    //    connect(m_pThread,SIGNAL(finished()),m_pThread,SLOT(deleteLater()));
+    connect(m_pThread,SIGNAL(finished()),m_pCusThreadObj,SLOT(deleteLater()));
+    connect(m_pThread,SIGNAL(finished()),m_pThread,SLOT(deleteLater()));
+    connect(this,SIGNAL(signalOperate()),m_pCusThreadObj,SLOT(slotDoWork()));
+    connect(m_pCusThreadObj,SIGNAL(signalResultReady(int)),
+            this,SLOT(slotHandleResults(int)));
     m_pThread->start();
 
-    m_pTimer = new QTimer(this);
-    connect(m_pTimer,SIGNAL(timeout()),m_pCusThreadObj,SLOT(slotDoWork()));
-    m_pTimer->start(200);
+    m_pTimer = new QTimer;
+    connect(m_pTimer,SIGNAL(timeout()),this,SIGNAL(signalOperate()));
+    m_pTimer->setInterval(200);
+    m_pTimer->start();
+}
+
+void AppInitTest::slotHandleResults(const int value)
+{
+    qDebug()<<"value:"<<value;
 }

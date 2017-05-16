@@ -17,8 +17,10 @@ public:
     void init();
 
 signals:
+    void signalOperate();
 
 public slots:
+    void slotHandleResults(const int value);
 
 private:
     CustomThreadObject  *m_pCusThreadObj;

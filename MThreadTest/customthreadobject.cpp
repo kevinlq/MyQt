@@ -21,5 +21,7 @@ void CustomThreadObject::slotStart()
 void CustomThreadObject::slotDoWork()
 {
     static int count = 0;
-    qDebug()<<count++;
+    count++;
+
+    emit signalResultReady(count);
 }

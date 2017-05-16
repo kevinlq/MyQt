@@ -7,6 +7,10 @@ My Qt demo
 ## MThreadTest
 多线程实例测试
 
+继承自QObject，通过信号与槽形式触发通信，在主线程中使用moveTothread()方法创建了多线程
+
+外部添加了定时器，定时发送信号给obj，这样实现了循环处理数据
+
 ## LBaiduMapTest
 Qt 和百度地图进行交互demo  
 

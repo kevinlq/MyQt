@@ -61,7 +61,7 @@
           <item>
            <widget class="QLineEdit" name="lineEdit_lot">
             <property name="text">
-             <string>116.508997</string>
+             <string>116.498278</string>
             </property>
            </widget>
           </item>
@@ -75,7 +75,7 @@
           <item>
            <widget class="QLineEdit" name="lineEdit_lat">
             <property name="text">
-             <string>39.982633</string>
+             <string>39.922965</string>
             </property>
            </widget>
           </item>

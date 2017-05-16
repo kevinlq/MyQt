@@ -30,12 +30,15 @@
       //map.enableKeyboard();                                 // 启用键盘操作。
       //map.enableContinuousZoom();                           // 启用连续缩放
 
-      var myIcon = new BMap.Icon("images/Point.png", new BMap.Size(20,25));
-      var marker = new BMap.Marker(point,{icon:myIcon});   // 创建标注
-      map.addOverlay(marker);                              // 加载标注
+      //var myIcon = new BMap.Icon("images/Point.png", new BMap.Size(20,25));
+      //var marker = new BMap.Marker(point,{icon:myIcon});   // 创建标注
+      //map.addOverlay(marker);                              // 加载标注
+	  
+	  addMarker(116.468278, 39.922965,"images/ship_mark.png");
+	  
+	  
       //marker.setAnimation(BMAP_ANIMATION_BOUNCE);        //添加跳动动画
       //marker.enableDragging();							             //鼠标穿透
-      var m_point;
 
       // 定义一个控件类，即function    
       function ZoomControl(){    
@@ -50,57 +53,43 @@
       var myZoomCtrl = new ZoomControl();
       map.addControl(myZoomCtrl);
 
-      var content = "<table>";
-          content = content + "<tr><td> 船名:QIONGSANYA</td></tr>";
-          content = content + "<tr><td> MMSI:433356743</td></tr>";
-          content = content + "<tr><td> IMO :0</td></tr>";
-          content = content + "<tr><td> 呼号:0</td></tr>";
-          content = content + "<tr><td> 经度:109.450852</td></tr>";
-          content = content + "<tr><td> 纬度:18.224768</td></tr>";
-          content +="</table>";
-       // 创建信息窗口对象 
-      var infoWindow = new BMap.InfoWindow(content); 
-      marker.addEventListener("mouseover", function(){          
-          this.openInfoWindow(infoWindow); //开启信息窗口
-        });
-        marker.addEventListener("onmouseout", function(){          
-          this.closeInfoWindow(infoWindow); //关闭信息窗口
-        });
-        marker.addEventListener("click", function(e){          
-          ReinforcePC.getCoordinate(e.point.lng,e.point.lat);
-          m_point = e.point;
-        });
-
-
-      var dragFlag = false;
-      /*显示经纬度*/
-      function showAddress(longjitude,latitude)
-      {
-         var gpsPoint = new BMap.Point(longjitude, latitude);
-
-         if(!dragFlag)
-         {
-           map.panTo(gpsPoint);
-         }
-         marker.setPosition(gpsPoint);
-      };
-
+	   var infoWindow;
+	   function createInfoWindow(shipName,mmsi){
+			
+			//创建信息窗口内容
+			var content = "<table>";
+				content = content + "<tr><td> 船名:"+ shipName + "</td></tr>";
+				content = content + "<tr><td> MMSI:"+ mmsi + "</td></tr>";
+				content = content + "<tr><td> 经度:"+ shipName + "</td></tr>";
+				content = content + "<tr><td> 纬度:"+ mmsi + "</td></tr>";
+				content +="</table>";
+				
+		    // 创建信息窗口对象 
+			infoWindow = new BMap.InfoWindow(content);
+		
+	   };
+	   
       //添加mark标记
       function addMarker(lot,lat,micon){		
-		var mkIcon = new BMap.Icon(micon, new BMap.Size(20,25));
+		var mkIcon = new BMap.Icon(micon, new BMap.Size(25,25));
 		var point = new BMap.Point(lot, lat);
 		var mk = new BMap.Marker(point,{icon:mkIcon});   // 创建标注
 		map.addOverlay(mk);                              // 加载标注
+		
+		//为标记创建信息窗口
+		createInfoWindow("aaa","bbb");
+		
+		mk.addEventListener("mouseover", function(){          
+			this.openInfoWindow(infoWindow); //开启信息窗口
+        });
+		mk.addEventListener("onmouseout", function(){          
+			this.closeInfoWindow(infoWindow); //关闭信息窗口
+        });
+		mk.addEventListener("click", function(e){          
+			ReinforcePC.getCoordinate(e.point.lng,e.point.lat);
+        });
       };
-
-      //返回目标点的经度和纬度
-      function ReturnLngLat(){
-          var LngLat = new Array();
-          LngLat[0] = m_point.lng;
-          LngLat[1] = m_point.lat;
-          return LngLat;
-      };
-
+	  
       map.addEventListener("mousemove",function(e)
       {
          //ReinforcePC.getCoordinate(e.point.lng,e.point.lat);

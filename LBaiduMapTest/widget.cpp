@@ -58,5 +58,5 @@ void Widget::on_pbnAddMarker_clicked()
     QString lot = ui->lineEdit_lot->text();
     QString lat = ui->lineEdit_lat->text();
 
-    addMarker(lot,lat,"images/Point.png");
+    addMarker(lot,lat,"images/ship_mark.png");
 }

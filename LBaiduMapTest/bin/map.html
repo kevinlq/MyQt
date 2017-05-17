@@ -34,7 +34,7 @@
       //var marker = new BMap.Marker(point,{icon:myIcon});   // 创建标注
       //map.addOverlay(marker);                              // 加载标注
 	  
-	  addMarker(116.468278, 39.922965,"images/ship_mark.png");
+	  //addMarker(116.468278, 39.922965,"images/ship_mark.png");
 	  
 	  
       //marker.setAnimation(BMAP_ANIMATION_BOUNCE);        //添加跳动动画
@@ -60,8 +60,6 @@
 			var content = "<table>";
 				content = content + "<tr><td> 船名:"+ shipName + "</td></tr>";
 				content = content + "<tr><td> MMSI:"+ mmsi + "</td></tr>";
-				content = content + "<tr><td> 经度:"+ shipName + "</td></tr>";
-				content = content + "<tr><td> 纬度:"+ mmsi + "</td></tr>";
 				content +="</table>";
 				
 		    // 创建信息窗口对象 
@@ -70,14 +68,15 @@
 	   };
 	   
       //添加mark标记
-      function addMarker(lot,lat,micon){		
+      function addMarker(lot,lat,micon,shipName,mmsi){		
 		var mkIcon = new BMap.Icon(micon, new BMap.Size(25,25));
 		var point = new BMap.Point(lot, lat);
 		var mk = new BMap.Marker(point,{icon:mkIcon});   // 创建标注
 		map.addOverlay(mk);                              // 加载标注
 		
+		
 		//为标记创建信息窗口
-		createInfoWindow("aaa","bbb");
+		createInfoWindow(shipName,mmsi);
 		
 		mk.addEventListener("mouseover", function(){          
 			this.openInfoWindow(infoWindow); //开启信息窗口

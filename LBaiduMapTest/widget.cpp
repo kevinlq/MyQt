@@ -36,10 +36,12 @@ void Widget::initMap()
 }
 
 void Widget::addMarker(const QString &lot, const QString &lat,
-                        const QString &micon)
+                       const QString &micon, const QString &name,
+                       const QString &mmsi)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
-    QString marker = QString("addMarker(\"%1\",\"%2\",\"%3\")").arg(lot).arg(lat).arg(micon);
+    QString marker = QString("addMarker(\"%1\",\"%2\",\"%3\",\"%4\",\"%5\")").
+            arg(lot).arg(lat).arg(micon).arg(name).arg(mmsi);
     frame->evaluateJavaScript(marker);
 }
 
@@ -57,6 +59,8 @@ void Widget::on_pbnAddMarker_clicked()
 {
     QString lot = ui->lineEdit_lot->text();
     QString lat = ui->lineEdit_lat->text();
+    QString name = ui->lineEdit_name->text();
+    QString mmsi = ui->lineEdit_mmsi->text();
 
-    addMarker(lot,lat,"images/ship_mark.png");
+    addMarker(lot,lat,"images/ship_mark.png",name,mmsi);
 }

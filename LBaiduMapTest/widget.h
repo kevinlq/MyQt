@@ -21,7 +21,8 @@ private:
     void initMap();
 
     void addMarker(const QString &lot, const QString &lat,
-                   const QString &micon);
+                   const QString &micon,const QString &name,
+                   const QString &mmsi);
 
 public Q_SLOTS:
     void getCoordinate(const QString &lot, const QString &lat);

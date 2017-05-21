@@ -1,8 +1,9 @@
 # MyQt
 [TOP]
 
-My Qt demo
-
+My Qt demo  
+Qt:4.8.6
+**编译时均取消影子构建**
 
 ## MThreadTest
 多线程实例测试

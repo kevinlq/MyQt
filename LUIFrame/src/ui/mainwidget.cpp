@@ -35,16 +35,15 @@ void MainWidget::init()
 void MainWidget::initForm()
 {
     this->resize (840,600);
-
-    //this->setWindowFlags(Qt::FramelessWindowHint);
-    //setMouseTracking (true);
 }
 
 void MainWidget::initWidget()
 {
     m_pTitleWidget = new LTitleWidget(this);
-    m_pToolWidget = new LToolWidget(this);
+    m_pTitleWidget->setTitleIcon (":/image/title.png");
+    m_pTitleWidget->setTitle ("*** 监控管理系统(kevinlq0912@163.com)");
 
+    m_pToolWidget = new LToolWidget(this);
     m_pStatusWidget = new LStatusWidget(this);
 
     m_pStackedWidget = new QStackedWidget(this);

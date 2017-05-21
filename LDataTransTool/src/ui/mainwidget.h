@@ -12,6 +12,8 @@ class LTitleWidget;
 class LStatusWidget;
 class LToolWidget;
 
+class FormTrans;
+
 class MainWidget : public NBaseMoveableWidget
 {
     Q_OBJECT
@@ -39,6 +41,7 @@ private:
     LStatusWidget   *m_pStatusWidget;
     LToolWidget     *m_pToolWidget;
     QStackedWidget  *m_pStackedWidget;
+    FormTrans       *m_pFrom;
 
     QHBoxLayout     *m_pHCenLayout;
 

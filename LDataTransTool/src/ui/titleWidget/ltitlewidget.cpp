@@ -65,9 +65,9 @@ void LTitleWidget::initWidget()
     m_pHToolLayout = new QHBoxLayout(m_pwidgetBackground);
     m_pHToolLayout->addSpacing (2);
     m_pHToolLayout->addWidget (m_plabelIcon);
-    m_pHToolLayout->addSpacing (4);
+    m_pHToolLayout->addStretch (1);
     m_pHToolLayout->addWidget (m_plabelTitle);
-    m_pHToolLayout->addStretch ();
+    m_pHToolLayout->addStretch (20);
     m_pHToolLayout->addWidget (m_pTbnClose);
     m_pHToolLayout->addSpacing (2);
 

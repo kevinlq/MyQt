@@ -10,6 +10,8 @@
 #include "statusWidget/lstatuswidget.h"
 #include "tooltWidget/ltoolwidget.h"
 
+#include "formtrans.h"
+
 MainWidget::MainWidget(QWidget *parent)
     : NBaseMoveableWidget(parent)
 {
@@ -34,7 +36,7 @@ void MainWidget::init()
 
 void MainWidget::initForm()
 {
-    this->resize (840,600);
+    this->resize (840,640);
 
     //this->setWindowFlags(Qt::FramelessWindowHint);
     //setMouseTracking (true);
@@ -43,11 +45,18 @@ void MainWidget::initForm()
 void MainWidget::initWidget()
 {
     m_pTitleWidget = new LTitleWidget(this);
+    m_pTitleWidget->setTitle ("数据转发工具");
+    m_pTitleWidget->setTitleIcon (":/image/title.png");
     m_pToolWidget = new LToolWidget(this);
 
     m_pStatusWidget = new LStatusWidget(this);
 
     m_pStackedWidget = new QStackedWidget(this);
+
+    m_pFrom = new FormTrans(this);
+
+    m_pStackedWidget->addWidget (m_pFrom);
+    m_pStackedWidget->setCurrentIndex (0);
 
     m_pHCenLayout = new QHBoxLayout();
     m_pHCenLayout->addWidget (m_pToolWidget);

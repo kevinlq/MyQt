@@ -45,7 +45,7 @@ void LToolWidget::initWidget()
 
     m_pSignalMap = new QSignalMapper(this);
 
-    m_listTbnText <<"tbn1"<<"tbn2"<<"tbn3";
+    m_listTbnText <<"数据转发";
 
     foreach (QString text, m_listTbnText) {
         m_pTbn = new QToolButton(m_pWidgetBack);

@@ -33,6 +33,7 @@ DEPENDPATH += bin
 
 include ($$PWD/src/util/util.pri)
 include ($$PWD/src/ui/ui.pri)
+include ($$PWD/src/dataInput/dataInput.pri)
 
 INCLUDEPATH +=$$PWD/src
 

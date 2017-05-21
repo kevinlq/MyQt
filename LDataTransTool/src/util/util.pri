@@ -7,3 +7,4 @@ SOURCES += \
     $$PWD/config.cpp \
     $$PWD/util.cpp \
     $$PWD/appinit.cpp
+

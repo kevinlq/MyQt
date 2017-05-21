@@ -60,3 +60,16 @@ QLabel#label_title{
 	font-size:28px;
 	font-family:simsun;
 }
+
+QProgressBar{
+    font:9px;
+    height:8px;
+    background:#E8EDF2;
+    border-radius:8px;
+	text-align:center;
+	border:1px;
+}
+QProgressBar:chunk{
+	border-radius:8px;
+	background-color:#1ABC9C;
+}

@@ -2,7 +2,7 @@
 [TOP]
 
 My Qt demo  
-Qt:4.8.6
+Qt:4.8.6    
 **编译时均取消影子构建**
 
 ## MThreadTest

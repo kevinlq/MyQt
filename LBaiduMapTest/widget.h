@@ -24,6 +24,9 @@ private:
                    const QString &micon,const QString &name,
                    const QString &mmsi);
 
+    void bmapOneMarker(const QString &lot, const QString &lat,
+                       const QString &msg,const QString &img);
+
 public Q_SLOTS:
     void getCoordinate(const QString &lot, const QString &lat);
 
@@ -31,6 +34,8 @@ private slots:
      void slotPopulateJavaScriptWindowObject();
 
     void on_pbnAddMarker_clicked();
+
+    void on_pbnSetCircle_clicked();
 
 private:
     Ui::Widget *ui;

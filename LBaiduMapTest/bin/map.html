@@ -52,42 +52,36 @@
        //创建地图实例
       var myZoomCtrl = new ZoomControl();
       map.addControl(myZoomCtrl);
-
-	   var infoWindow;
-	   function createInfoWindow(shipName,mmsi){
-			
-			//创建信息窗口内容
+	  
+		function BMapOneMarker(lot,lat,shipName,mmsi){
+			var opts={  
+					width:80,
+					height:40
+						 //title:弹出层的标题
+				};
+							//创建信息窗口内容
 			var content = "<table>";
 				content = content + "<tr><td> 船名:"+ shipName + "</td></tr>";
 				content = content + "<tr><td> MMSI:"+ mmsi + "</td></tr>";
 				content +="</table>";
 				
-		    // 创建信息窗口对象 
-			infoWindow = new BMap.InfoWindow(content);
-		
-	   };
-	   
-      //添加mark标记
-      function addMarker(lot,lat,micon,shipName,mmsi){		
-		var mkIcon = new BMap.Icon(micon, new BMap.Size(25,25));
-		var point = new BMap.Point(lot, lat);
-		var mk = new BMap.Marker(point,{icon:mkIcon});   // 创建标注
-		map.addOverlay(mk);                              // 加载标注
-		
-		
-		//为标记创建信息窗口
-		createInfoWindow(shipName,mmsi);
-		
-		mk.addEventListener("mouseover", function(){          
-			this.openInfoWindow(infoWindow); //开启信息窗口
-        });
-		mk.addEventListener("onmouseout", function(){          
-			this.closeInfoWindow(infoWindow); //关闭信息窗口
-        });
-		mk.addEventListener("click", function(e){          
-			ReinforcePC.getCoordinate(e.point.lng,e.point.lat);
-        });
-      };
+			var infoWindow=new BMap.InfoWindow(content,opts);//创建信息窗口对象 
+			
+			var mkIcon = new BMap.Icon("images/ship_mark.png", new BMap.Size(25,25));
+			var point = new BMap.Point(lot, lat);
+			var marker=new BMap.Marker(point,{icon:mkIcon});  
+			map.addOverlay(marker);  
+			marker.addEventListener("click",function(){  
+				//map.openInfoWindow(infoWindow,point);//打开信息窗口  
+				alert(content);
+			});
+			marker.addEventListener("mouseover",function(){
+				map.openInfoWindow(infoWindow,point);//打开信息窗口
+			});
+			marker.addEventListener("onmouseout",function(){
+				map.closeInfoWindow(infoWindow,point); //关闭信息窗口
+			});
+		};
 	  
       map.addEventListener("mousemove",function(e)
       {

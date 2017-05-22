@@ -45,6 +45,15 @@ void Widget::addMarker(const QString &lot, const QString &lat,
     frame->evaluateJavaScript(marker);
 }
 
+void Widget::bmapOneMarker(const QString &lot, const QString &lat,
+                           const QString &msg, const QString &img)
+{
+    QWebFrame *frame = ui->webView->page()->mainFrame();
+    QString mk = QString("BMapOneMarker(\"%1\",\"%2\",\"%3\",\"%4\")")
+            .arg(lot).arg(lat).arg(msg).arg(img);
+    frame->evaluateJavaScript(mk);
+}
+
 void Widget::getCoordinate(const QString &lot, const QString &lat)
 {
     qDebug()<<"lot:"<<lot<<" lat:"<<lat;
@@ -62,5 +71,13 @@ void Widget::on_pbnAddMarker_clicked()
     QString name = ui->lineEdit_name->text();
     QString mmsi = ui->lineEdit_mmsi->text();
 
-    addMarker(lot,lat,"images/ship_mark.png",name,mmsi);
+    //addMarker(lot,lat,"images/ship_mark.png",name,mmsi);
+
+    bmapOneMarker(lot,lat,name,mmsi);
+}
+
+void Widget::on_pbnSetCircle_clicked()
+{
+    //QPoint point(116.498605,39.931929);
+    bmapOneMarker("116.498605","39.931929","sss","images/ship_mark.png");
 }

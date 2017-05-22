@@ -1,0 +1,75 @@
+QWidget#title_widet,QWidget#tool_widget,QWidget#widget_status{
+	background: qlineargradient(spread:padding-bottom, x1:0, y1:0, x2:0, y2:1, stop:0 #1B89A1, stop:1 #1077A0);
+}
+QStackedWidget{
+	background: qlineargradient(spread:padding-bottom, x1:0, y1:0, x2:0, y2:1, stop:0 #ABD9E3, stop:1 #74CEF2);
+	outline:0x;
+}
+.QToolButton{
+	border-style:none;
+	padding:10px;
+	border-radius:5px;
+	color:#FFFFFF;
+	background:#3498DB;
+}
+.QToolButton:hover{
+	color:#E5FEFF;
+	background:#5DACE4;
+}
+.QToolButton:pressed{
+	color:#A0DAFB;
+	background:#2483C7;
+}
+
+QToolButton#tbn_close{
+	border-radius:1px;
+	color:#386487;
+	padding:3px;
+	background-color:rgba(255,255,255,80);
+	border-style:none;
+}
+QToolButton#tbn_close:hover{
+	color:#FFFFFF;
+	background-color:rgba(112,66,223,50);
+}
+QToolButton#tbn_close:pressed{
+	background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #DEF0FE,stop:1 #C0DEF6);
+}
+
+QLineEdit{
+	border-style:none;
+	padding:6px;
+	border-radius:5px;
+	border:2px solid #DCE4EC;
+}
+QLineEdit:focus{
+	border:2px solid #3498DB;
+}
+
+QLabel#label_white{
+	border-radius:0px;
+	color: #F0F0F0;
+	background-color:rgba(0,0,0,0);
+	border-style:none;
+}
+QLabel#label_title{
+	border-radius:0px;
+	color: #F0F0F0;
+	background-color:rgba(0,0,0,0);
+	border-style:none;
+	font-size:28px;
+	font-family:simsun;
+}
+
+QProgressBar{
+    font:9px;
+    height:8px;
+    background:#E8EDF2;
+    border-radius:8px;
+	text-align:center;
+	border:1px;
+}
+QProgressBar:chunk{
+	border-radius:8px;
+	background-color:#1ABC9C;
+}

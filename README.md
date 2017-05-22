@@ -1,8 +1,9 @@
 # MyQt
 [TOP]
 
-My Qt demo
-
+My Qt demo  
+Qt:4.8.6    
+**编译时均取消影子构建**
 
 ## MThreadTest
 多线程实例测试
@@ -21,3 +22,15 @@ javascript:2.0
 
 * 1. 数据经纬度信息后可以在地图中添加一个标记(marker)
 * 2. 点击对应的marker可以获取该标记的经纬度信息；
+
+
+## LDataTransTool
+数据转换工具
+
+## LUIFrame
+界面封装库  
+Qt:4.8.6  
+
+![](/screen/luiframe_project.png)
+
+![](/screen/luiframe.png)

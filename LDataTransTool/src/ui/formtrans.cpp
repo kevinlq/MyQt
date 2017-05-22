@@ -1,4 +1,4 @@
-#include "formtrans.h"
+﻿#include "formtrans.h"
 #include "ui_formtrans.h"
 
 #include <QDebug>
@@ -71,7 +71,7 @@ void FormTrans::initWidget()
     m_pTimer = new QTimer(this);
     connect (m_pTimer,SIGNAL(timeout()),
              this,SLOT(slotTimeOut()));
-    m_pTimer->setInterval (500);
+    m_pTimer->setInterval (1000);
 }
 
 void FormTrans::setSerialEnable(bool flag)
@@ -107,6 +107,7 @@ void FormTrans::slotReadSerial(const QByteArray &buff)
 
 void FormTrans::slotTimeOut()
 {
+#if 0
     if (!m_listByte.isEmpty ())
     {
         m_pSerial->slotWriteSerial (m_listByte.takeFirst ());
@@ -114,6 +115,18 @@ void FormTrans::slotTimeOut()
         m_pTimer->stop ();
         m_listByte.clear ();
     }
+#endif
+    //2017年5月22日17:53:00
+    //修改为循环发送
+    static int count = 0;
+    if (!m_listByte.isEmpty()){
+        m_pSerial->slotWriteSerial(m_listByte.at(count));
+    }
+    if (count ==  ( m_listByte.count() - 1)){
+        count = 0;
+    }
+    qDebug()<<"count:"<<count<<" m_list:"<<m_listByte.size();
+    count++;
 }
 
 //发送数据

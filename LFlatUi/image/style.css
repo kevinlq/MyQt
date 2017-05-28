@@ -1,0 +1,25 @@
+.QToolButton,.QPushButton{
+	border-style:none;
+	padding:10px;
+	border-radius:5px;
+	color:#FFFFFF;
+	background:#3498DB;
+}
+.QToolButton:hover,.QPushButton:hover{
+	color:#E5FEFF;
+	background:#5DACE4;
+}
+.QToolButton:pressed,.QPushButton:pressed{
+	color:#A0DAFB;
+	background:#2483C7;
+}
+
+QLineEdit{
+	border-style:none;
+	padding:6px;
+	border-radius:5px;
+	border:2px solid #DCE4EC;
+}
+QLineEdit:focus{
+	border:2px solid #3498DB;
+}

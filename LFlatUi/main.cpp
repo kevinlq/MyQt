@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForTr(code);
 #endif
 
-    QFile file(":/image/style.css");
+    QFile file(":/image/black.css");
     file.open (QFile::ReadOnly);
     QString css = QLatin1String(file.readAll ());
     qApp->setStyleSheet (css);

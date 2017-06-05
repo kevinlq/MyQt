@@ -34,3 +34,7 @@ Qt:4.8.6
 ![](/screen/luiframe_project.png)
 
 ![](/screen/luiframe.png)
+
+
+横排工具栏 
+![](/screen/luiframe2.png)

@@ -38,3 +38,19 @@ Qt:4.8.6
 
 横排工具栏 
 ![](/screen/luiframe2.png)
+
+## TableView嵌入CheckBox
+
+TableView嵌入CheckBox，采用自定义委托和模型
+
+**实现的主要功能：**
+1. 动态插入数据；
+2. 动态删除数据；
+3. 支持多选/全部选中对数据进行删除；
+4. 对数据进行动态修改(**待完成**)
+
+![tableView checkbox](/screen/tableview.png);
+
+![tableView checkbox](/screen/tableview2.png);
+
+

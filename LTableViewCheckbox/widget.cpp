@@ -54,7 +54,6 @@ Widget::Widget(QWidget *parent) :
 
     connect (m_pDelegate,SIGNAL(signalCheckChange(bool,int)),
              this,SLOT(slotDateChange(bool,int)));
-
 }
 
 Widget::~Widget()

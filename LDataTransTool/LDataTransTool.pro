@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui network sql xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,9 +31,10 @@ win32{
 
 DEPENDPATH += bin
 
-include ($$PWD/src/util/util.pri)
-include ($$PWD/src/ui/ui.pri)
-include ($$PWD/src/dataInput/dataInput.pri)
+include($$PWD/src/util/util.pri)
+include($$PWD/src/ui/ui.pri)
+include($$PWD/src/dataInput/dataInput.pri)
+include($$PWD/src/db/db.pri)
 
 INCLUDEPATH +=$$PWD/src
 

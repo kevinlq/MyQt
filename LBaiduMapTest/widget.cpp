@@ -54,6 +54,13 @@ void Widget::bmapOneMarker(const QString &lot, const QString &lat,
     frame->evaluateJavaScript(mk);
 }
 
+void Widget::addCircle(const QString &lot, const QString &lat, const int radius)
+{
+    QWebFrame *frame = ui->webView->page()->mainFrame();
+    QString cmd = QString("addCircle(\"%1\",\"%2\",\"%3\")").arg(lot).arg(lat).arg(radius);
+    frame->evaluateJavaScript(cmd);
+}
+
 void Widget::getCoordinate(const QString &lot, const QString &lat)
 {
     qDebug()<<"lot:"<<lot<<" lat:"<<lat;
@@ -79,5 +86,8 @@ void Widget::on_pbnAddMarker_clicked()
 void Widget::on_pbnSetCircle_clicked()
 {
     //QPoint point(116.498605,39.931929);
-    bmapOneMarker("116.498605","39.931929","sss","images/ship_mark.png");
+    //bmapOneMarker("116.498605","39.931929","sss","images/ship_mark.png");
+
+    int radius = ui->lineEdit_radius->text().toInt();
+    addCircle("116.498278","39.922965",radius);
 }

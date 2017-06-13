@@ -50,12 +50,12 @@ void AppInitTest::init()
     connect(m_pThread,SIGNAL(finished()),m_pThread,SLOT(deleteLater()));
     connect(this,SIGNAL(signalOperate()),m_pCusThreadObj,SLOT(slotDoWork()));
     connect(m_pCusThreadObj,SIGNAL(signalResultReady(int)),
-            this,SLOT(slotHandleResults(int)));
+            this,SLOT(slotHandleResults(int)),Qt::QueuedConnection);
     m_pThread->start();
 
-    m_pTimer = new QTimer;
+    m_pTimer = new QTimer(this);
     connect(m_pTimer,SIGNAL(timeout()),this,SIGNAL(signalOperate()));
-    m_pTimer->setInterval(200);
+    m_pTimer->setInterval(100);
     m_pTimer->start();
 }
 

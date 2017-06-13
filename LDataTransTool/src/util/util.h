@@ -1,7 +1,8 @@
 ﻿#ifndef UTIL_H
 #define UTIL_H
 
-class QString;
+#include <QString>
+
 class QStringList;
 class QVariant;
 
@@ -10,6 +11,10 @@ class Util
 public:
     Util();
     ~Util();
+
+     QString getConfigPath();
+
+     void setConfigPath(const QString &path);
 
     /**
      * @brief writeInit 写入配置文件
@@ -53,6 +58,8 @@ private:
      * @return : variant
      */
     QVariant getConfigValue(const QString &path);
+
+    QString m_appPath;
 
 };
 

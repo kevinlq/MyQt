@@ -16,6 +16,16 @@ Util::~Util()
 {
 }
 
+QString Util::getConfigPath()
+{
+    return m_appPath;
+}
+
+void Util::setConfigPath(const QString &path)
+{
+    m_appPath = path;
+}
+
 bool Util::writeInit(const QString &path, const QString &group,
                      const QString &key,const QVariant &value)
 {
@@ -94,7 +104,7 @@ void Util::CreateNewConFile(const QString &fileInfo)
     writeInit(fileInfo,"database","port",3306);
     writeInit(fileInfo,"database","database_name","TOS.db");
     writeInit(fileInfo,"database","username","root");
-    writeInit(fileInfo,"database","password","root");
+    writeInit(fileInfo,"database","password","123456");
     writeInit(fileInfo,"database","test_on_borrow",true);
     writeInit(fileInfo,"database","test_on_borrow_sql","SELECT 1");
     writeInit(fileInfo,"database","max_wait_time",5000);

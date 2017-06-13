@@ -1,4 +1,4 @@
-#include <QApplication>
+﻿#include <QApplication>
 #include <QTextCodec>
 
 #include "ui/mainwidget.h"
@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     qApp->setStyleSheet (css);
 
     AppInit init;
+    init.setConfigPath(QApplication::applicationDirPath());
     init.init ();
 
     MainWidget w;

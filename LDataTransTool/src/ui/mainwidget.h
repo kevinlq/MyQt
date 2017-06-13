@@ -1,4 +1,4 @@
-#ifndef MAINWIDGET_H
+﻿#ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
 #include <QWidget>
@@ -13,6 +13,7 @@ class LStatusWidget;
 class LToolWidget;
 
 class FormTrans;
+class FormDatabase;
 
 class MainWidget : public NBaseMoveableWidget
 {
@@ -42,6 +43,7 @@ private:
     LToolWidget     *m_pToolWidget;
     QStackedWidget  *m_pStackedWidget;
     FormTrans       *m_pFrom;
+    FormDatabase    *m_pFormDatabase;
 
     QHBoxLayout     *m_pHCenLayout;
 

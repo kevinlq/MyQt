@@ -1,4 +1,4 @@
-#include "mainwidget.h"
+﻿#include "mainwidget.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -11,6 +11,7 @@
 #include "tooltWidget/ltoolwidget.h"
 
 #include "formtrans.h"
+#include "formdatabase.h"
 
 MainWidget::MainWidget(QWidget *parent)
     : NBaseMoveableWidget(parent)
@@ -45,7 +46,7 @@ void MainWidget::initForm()
 void MainWidget::initWidget()
 {
     m_pTitleWidget = new LTitleWidget(this);
-    m_pTitleWidget->setTitle ("数据转发工具");
+    m_pTitleWidget->setTitle ("数据采集模拟器");
     m_pTitleWidget->setTitleIcon (":/image/title.png");
     m_pToolWidget = new LToolWidget(this);
 
@@ -54,8 +55,10 @@ void MainWidget::initWidget()
     m_pStackedWidget = new QStackedWidget(this);
 
     m_pFrom = new FormTrans(this);
+    m_pFormDatabase = new FormDatabase(this);
 
     m_pStackedWidget->addWidget (m_pFrom);
+    m_pStackedWidget->addWidget(m_pFormDatabase);
     m_pStackedWidget->setCurrentIndex (0);
 
     m_pHCenLayout = new QHBoxLayout();
@@ -90,5 +93,9 @@ void MainWidget::slotCloseWidget()
 
 void MainWidget::slotPageChange(const QString &name)
 {
-    qDebug ()<<name;
+    if (name == "数据转发"){
+        m_pStackedWidget->setCurrentIndex(0);
+    }else if (name == "数据库"){
+        m_pStackedWidget->setCurrentIndex(1);
+    }
 }

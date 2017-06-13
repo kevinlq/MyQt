@@ -1,4 +1,4 @@
-#ifndef FORMTRANS_H
+﻿#ifndef FORMTRANS_H
 #define FORMTRANS_H
 
 #include <QWidget>
@@ -57,6 +57,7 @@ private:
     QTimer  *m_pTimer;
     bool m_fileIsOpen;
     QList <QByteArray> m_listByte;
+    int m_totalNum;
 };
 
 #endif // FORMTRANS_H

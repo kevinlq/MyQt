@@ -13,9 +13,15 @@ AppInit::~AppInit()
     //
 }
 
+void AppInit::setConfigPath(const QString &path)
+{
+    Config &config = Singleton<Config>::getInstance();
+    config.setAppPath(path);
+}
+
 void AppInit::init()
 {
     Config &config = Singleton<Config>::getInstance();
     config.loadDefaultInfo();
-//    config.conTest();
+    config.conTest();
 }

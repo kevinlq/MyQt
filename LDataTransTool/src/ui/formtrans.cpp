@@ -71,7 +71,7 @@ void FormTrans::initWidget()
     m_pTimer = new QTimer(this);
     connect (m_pTimer,SIGNAL(timeout()),
              this,SLOT(slotTimeOut()));
-    m_pTimer->setInterval (1000);
+    m_pTimer->setInterval (300);
 }
 
 void FormTrans::setSerialEnable(bool flag)
@@ -107,26 +107,29 @@ void FormTrans::slotReadSerial(const QByteArray &buff)
 
 void FormTrans::slotTimeOut()
 {
-#if 0
     if (!m_listByte.isEmpty ())
     {
-        m_pSerial->slotWriteSerial (m_listByte.takeFirst ());
+        QByteArray buff = m_listByte.takeFirst ();
+        m_pSerial->slotWriteSerial (buff);
+        qDebug()<<buff;
     }else{
         m_pTimer->stop ();
         m_listByte.clear ();
     }
-#endif
+
+    ui->label_sendNum->setText(QString::number(m_totalNum - m_listByte.count()));
+
     //2017年5月22日17:53:00
     //修改为循环发送
-    static int count = 0;
-    if (!m_listByte.isEmpty()){
-        m_pSerial->slotWriteSerial(m_listByte.at(count));
-    }
-    if (count ==  ( m_listByte.count() - 1)){
-        count = 0;
-    }
-    qDebug()<<"count:"<<count<<" m_list:"<<m_listByte.size();
-    count++;
+    //    static int count = 0;
+    //    if (!m_listByte.isEmpty()){
+    //        m_pSerial->slotWriteSerial(m_listByte.at(count));
+    //    }
+    //    if (count ==  ( m_listByte.count() - 1)){
+    //        count = 0;
+    //    }
+    //    qDebug()<<"count:"<<count<<" m_list:"<<m_listByte.size();
+    //    count++;
 }
 
 //发送数据
@@ -154,6 +157,9 @@ void FormTrans::on_tbn_send_clicked()
             m_listByte.append (lineStr.toAscii ());
         }
         file.close ();
+        m_totalNum = m_listByte.count();
+        ui->label_totalNum->setText(QString::number(m_totalNum));
+        ui->label_sendNum->setText("0");
     }
 
     if (!m_pTimer->isActive ()){
@@ -207,5 +213,4 @@ void FormTrans::on_tbn_find_clicked()
     ui->lineEdit_data_source->setText (info);
 
     m_fileInfo = info;
-
 }

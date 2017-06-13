@@ -12,6 +12,8 @@ public:
     explicit AppInit(QObject *parent = 0);
     ~AppInit();
 
+    void setConfigPath(const QString &path);
+
     void init();
 
 Q_SIGNALS:

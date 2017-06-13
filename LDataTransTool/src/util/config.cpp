@@ -16,6 +16,11 @@ Config::~Config()
     destroy();
 }
 
+void Config::setAppPath(const QString &path)
+{
+    m_pUtil->setConfigPath(path);
+}
+
 bool Config::loadDefaultInfo()
 {
     return m_pUtil->checkConfigFile("data/config.ini");
@@ -26,18 +31,34 @@ bool Config::emptyConfigFile()
     return m_pUtil->emptyConfigFile("data/config.ini");
 }
 
-bool Config::writeInitfile(const QString &path,
-                           const QString &group,
-                           const QString &key,
+bool Config::writeInitfile(const QString &group, const QString &key,
                            const QVariant &value)
 {
+    QString path = m_pUtil->getConfigPath()+"/data/config.ini";
     return m_pUtil->writeInit(path,group,key,value);
+}
+
+bool Config::writeInitfile(const QString &group, const QVariantMap &params)
+{
+    QString path = m_pUtil->getConfigPath()+"/data/config.ini";
+    for (QVariantMap::const_iterator i = params.constBegin();
+         i != params.constEnd();i++)
+    {
+        if ( !m_pUtil->writeInit(path,group,i.key(),i.value()))
+            return false;
+    }
+    return true;
 }
 
 void Config::destroy()
 {
     delete m_pUtil;
     m_pUtil = NULL;
+}
+
+QString Config::getAppPath() const
+{
+    return m_pUtil->getConfigPath();
 }
 
 QString Config::getDatabaseType() const
@@ -113,6 +134,7 @@ bool Config::isRconnect() const
 
 void Config::conTest()
 {
+    qDebug()<<"getAppPath:"<<getAppPath();
     qDebug()<<"getDatabaseType:"<<getDatabaseType();
     qDebug()<<"getDatabaseHost:"<<getDatabaseHost();
     qDebug()<<"getDatabaseName:"<<getDatabaseName();

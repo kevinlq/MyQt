@@ -27,8 +27,12 @@ private:
     void bmapOneMarker(const QString &lot, const QString &lat,
                        const QString &msg,const QString &img);
 
+    void addCircle(const QString &lot, const QString &lat,
+                   const int raidus);
+
 public Q_SLOTS:
     void getCoordinate(const QString &lot, const QString &lat);
+
 
 private slots:
      void slotPopulateJavaScriptWindowObject();

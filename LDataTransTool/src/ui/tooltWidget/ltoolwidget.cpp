@@ -1,4 +1,4 @@
-#include "ltoolwidget.h"
+﻿#include "ltoolwidget.h"
 
 #include <QDebug>
 #include <QToolButton>
@@ -45,7 +45,7 @@ void LToolWidget::initWidget()
 
     m_pSignalMap = new QSignalMapper(this);
 
-    m_listTbnText <<"数据转发";
+    m_listTbnText <<"数据转发"<<"数据库";
 
     foreach (QString text, m_listTbnText) {
         m_pTbn = new QToolButton(m_pWidgetBack);

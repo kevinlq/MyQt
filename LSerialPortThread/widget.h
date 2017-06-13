@@ -19,6 +19,16 @@ public:
     ~Widget();
 
 private:
+    void init();
+
+Q_SIGNALS:
+
+private Q_SLOTS:
+    void slotReadSerialData(const QByteArray &buff);
+
+private:
+
+private:
     Ui::Widget *ui;
 
     SerialPortObj   *m_pserialObj;

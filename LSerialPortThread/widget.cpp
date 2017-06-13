@@ -21,10 +21,26 @@ Widget::Widget(QWidget *parent) :
     connect (m_pserialObj,SIGNAL(destroyed(QObject*)),
              m_pThread,SLOT(quit()));
 
+//    connect (m_pThread,SIGNAL(finished()),
+//             m_pThread,SLOT(deleteLater()));
+
     m_pThread->start ();
+
+    connect (m_pserialObj,SIGNAL(signalSendSerialPortData(QByteArray)),
+             this,SLOT(slotReadSerialData(QByteArray)));
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::init()
+{
+    //
+}
+
+void Widget::slotReadSerialData(const QByteArray &buff)
+{
+    qDebug ()<<buff;
 }

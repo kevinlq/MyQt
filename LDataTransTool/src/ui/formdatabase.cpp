@@ -5,11 +5,14 @@
 #include "db/ConnectionPool.h"
 #include "db/ldbhandle.h"
 
+#include "db/readfieldobj.h"
+
 #include <QSqlDatabase>
 
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QDebug>
+#include <QThread>
 
 FormDatabase::FormDatabase(QWidget *parent) :
     QWidget(parent),
@@ -37,6 +40,19 @@ void FormDatabase::init()
     }
 
     m_file = "";
+
+    m_preadObj = new ReadFieldObj;
+    m_preadThread = new QThread;
+    m_preadObj->moveToThread(m_preadThread);
+    connect(m_preadThread,SIGNAL(started()),
+            m_preadObj,SLOT(slotStartReadDbField()));
+    connect(qApp,SIGNAL(aboutToQuit()),
+            m_preadObj,SLOT(deleteLater()));
+    connect(m_preadObj,SIGNAL(destroyed(QObject*)),
+            m_preadThread,SLOT(quit()));
+
+    connect(m_preadObj,SIGNAL(signalSendDbField(QString)),
+            this,SIGNAL(signalSendDbFieldInfo(QString)));
 }
 
 QString FormDatabase::getFileInfo()
@@ -47,7 +63,6 @@ QString FormDatabase::getFileInfo()
     dialog.setViewMode(QFileDialog::Detail);
     dialog.setNameFilter("(*.db)");
     if (dialog.exec()){
-        //            qDebug()<<dialog.selectedFiles();
         info = dialog.selectedFiles().at(0);
     }
 
@@ -89,9 +104,6 @@ void FormDatabase::on_pbn_openDb_clicked()
 
     config.writeInitfile("database",params);
 
-
-    //QFileInfo fileInfo(m_file);
-
     ui->comboBox_tableField->clear();
     ui->comboBox_tableName->clear();
 
@@ -122,4 +134,19 @@ void FormDatabase::on_radioButton_mysql_toggled(bool checked)
     ui->lineEdit_dbPort->setEnabled(checked);
     ui->lineEdit_dbUserName->setEnabled(checked);
     ui->lineEdit_dbPwd->setEnabled(checked);
+}
+
+void FormDatabase::on_pbn_read_clicked()
+{
+    if (!m_preadThread->isRunning())
+        m_preadThread->start();
+}
+
+void FormDatabase::on_comboBox_tableField_currentIndexChanged(const QString &arg1)
+{
+
+    Q_UNUSED(arg1);
+
+    m_preadObj->setTablInfo(ui->comboBox_tableName->currentText(),
+                            ui->comboBox_tableField->currentText());
 }

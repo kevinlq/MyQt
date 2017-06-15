@@ -84,6 +84,9 @@ void MainWidget::initConnect()
 
     connect (m_pToolWidget,SIGNAL(signalOnTbnClicked(QString)),
              this,SLOT(slotPageChange(QString)));
+
+    connect(m_pFormDatabase,SIGNAL(signalSendDbFieldInfo(QString)),
+            m_pFrom,SLOT(slotWriteSerial(QString)));
 }
 
 void MainWidget::slotCloseWidget()

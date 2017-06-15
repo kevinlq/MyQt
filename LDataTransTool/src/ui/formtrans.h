@@ -35,6 +35,8 @@ private:
 private slots:
     void slotReadSerial( const QByteArray &buff);
 
+    void slotWriteSerial(const QString &str);
+
     void slotTimeOut();
 
     void on_tbn_send_clicked();

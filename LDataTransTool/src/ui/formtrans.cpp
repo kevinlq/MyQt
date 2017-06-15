@@ -105,6 +105,14 @@ void FormTrans::slotReadSerial(const QByteArray &buff)
     qDebug ()<<buff;
 }
 
+void FormTrans::slotWriteSerial(const QString &str)
+{
+    if (!str.isEmpty()){
+        m_pSerial->slotWriteSerial(str.toUtf8());
+        qDebug()<<"serial:"<<str;
+    }
+}
+
 void FormTrans::slotTimeOut()
 {
     if (!m_listByte.isEmpty ())

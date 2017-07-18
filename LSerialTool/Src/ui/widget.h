@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class SerialPortObj;
+class QTimer;
 
 namespace Ui {
 class Widget;
@@ -30,6 +31,8 @@ private Q_SLOTS:
 
     void slotReceSerial(const QByteArray &buf);
 
+    void slotUpdateTime();
+
     void on_btnOpen_clicked();
 
     void on_btnSend_clicked();
@@ -46,6 +49,7 @@ private:
 private:
     Ui::Widget *ui;
     SerialPortObj   *m_pSerialObj;
+    QTimer  *m_pUpdateTime;
 };
 
 #endif // WIDGET_H

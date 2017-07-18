@@ -6,6 +6,8 @@
 #include <QDateTime>
 #include <QDebug>
 
+#include <QTimer>
+
 #define DATETIME qPrintable (QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"))
 
 Widget::Widget(QWidget *parent) :
@@ -90,6 +92,12 @@ void Widget::initForm()
         ui->cboxTime->addItem(QString::number(i));
     }
     ui->cboxTime->setEditable(true);
+
+    //更新时间
+    m_pUpdateTime = new QTimer(this);
+    connect(m_pUpdateTime,SIGNAL(timeout()),
+            this,SLOT(slotUpdateTime()));
+    m_pUpdateTime->start(1000);
 }
 
 void Widget::initObj()
@@ -103,6 +111,12 @@ void Widget::initObj()
 void Widget::slotReceSerial(const QByteArray &buf)
 {
     ui->txtRecData->append(buf);
+}
+
+void Widget::slotUpdateTime()
+{
+    ui->labDate->setText(QDate::currentDate().toString("yyyy-MM-dd"));
+    ui->labTime->setText(QTime::currentTime().toString("hh:mm:ss"));
 }
 
 /**

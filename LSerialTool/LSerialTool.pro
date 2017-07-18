@@ -44,10 +44,16 @@ unix{
 
 DEPENDPATH += bin
 
-SOURCES += main.cpp\
-        widget.cpp
+include($$PWD/Src/3rdparty/3rdparty.pri)
+include($$PWD/Src/ui/ui.pri)
+include($$PWD/Src/bean/bean.pri)
 
-HEADERS  += widget.h
+INCLUDEPATH +=$$PWD/Src/3rdparty/serialport
+INCLUDEPATH +=$$PWD/Src/ui
+INCLUDEPATH +=$$PWD/Src/bean
+
+SOURCES += main.cpp
+
 
 message(Qt version: $$[QT_VERSION])
 message(Qt is installed in $$[QT_INSTALL_PREFIX])

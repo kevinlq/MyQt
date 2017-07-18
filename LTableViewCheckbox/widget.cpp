@@ -1,4 +1,4 @@
-#include "widget.h"
+﻿#include "widget.h"
 #include "ui_widget.h"
 
 #include "tablemodel.h"
@@ -32,7 +32,7 @@ Widget::Widget(QWidget *parent) :
 
     bool status = false;
     //加载数据
-    for (int i = 0;i < 10;i++)
+    for (int i = 0;i < 5;i++)
     {
         FileRecord record;
         record.bChecked = status;
@@ -135,6 +135,8 @@ void Widget::slotDateChange(const bool flag, const int row)
 
     ui->lineEdit->setText (QString("row:%1 check status:%2")
                            .arg (row).arg (result));
+
+    qDebug()<<m_recordList.at(row).strFilePath;
 }
 
 

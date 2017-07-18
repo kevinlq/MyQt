@@ -31,7 +31,7 @@ void Widget::init()
 
 void Widget::initForm()
 {
-    this->setWindowTitle("串口助手");
+    this->setWindowTitle("串口助手-devstone(kevinlq0912@163.com)");
 
     QStringList comList;//串口号
     QStringList baudList;//波特率
@@ -84,6 +84,12 @@ void Widget::initForm()
     ui->cboxStopBit->clear();
     ui->cboxStopBit->addItems(stopBitsList);
     ui->cboxStopBit->setCurrentIndex(0);
+
+    //发送区
+    for(int i = 100;i < 1001;i+=100){
+        ui->cboxTime->addItem(QString::number(i));
+    }
+    ui->cboxTime->setEditable(true);
 }
 
 void Widget::initObj()
@@ -114,6 +120,7 @@ void Widget::on_btnOpen_clicked()
 
         if (m_pSerialObj->openSerial()){
             ui->btnOpen->setText("关闭");
+            ui->labIsOpen->setText("串口状态:打开");
 
             //改变控件状态
             setSerialConEnable(false);
@@ -121,6 +128,7 @@ void Widget::on_btnOpen_clicked()
     }else{
         if( m_pSerialObj->closeSerial()){
             ui->btnOpen->setText("打开");
+            ui->labIsOpen->setText("串口状态:关闭");
 
             //改变控件状态
             setSerialConEnable(true);

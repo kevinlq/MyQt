@@ -13,16 +13,17 @@ SerialPortObj::SerialPortObj(QObject *parent)
 SerialPortObj::~SerialPortObj()
 {
     qDebug ()<<"destroy SerialPortObj";
-    if (m_pSerialPort){
-        if (m_pSerialPort->isOpen ())
-            m_pSerialPort->close ();
-        delete m_pSerialPort;
-        m_pSerialPort = NULL;
-    }
     if (d_ptr){
         delete d_ptr;
         d_ptr = NULL;
     }
+
+#if 0
+    if (m_pSerialPort){
+        delete m_pSerialPort;
+        m_pSerialPort = NULL;
+    }
+#endif
 }
 
 void SerialPortObj::setSerialName(const QString &name)

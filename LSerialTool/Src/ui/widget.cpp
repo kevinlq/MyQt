@@ -7,6 +7,7 @@
 #include <QDebug>
 
 #include <QTimer>
+#include <QFileDialog>
 
 #define DATETIME qPrintable (QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"))
 
@@ -98,6 +99,16 @@ void Widget::initForm()
     connect(m_pUpdateTime,SIGNAL(timeout()),
             this,SLOT(slotUpdateTime()));
     m_pUpdateTime->start(1000);
+
+    m_pAutoSendTime = new QTimer(this);
+    connect(m_pAutoSendTime,SIGNAL(timeout()),
+            this,SLOT(slotAutoSendInfo()));
+    m_pAutoSendTime->setInterval(ui->cboxTime->currentText().toInt());
+
+    m_fileConList.clear();
+
+    m_sendCount = 0;
+    m_receCount = 0;
 }
 
 void Widget::initObj()
@@ -108,15 +119,45 @@ void Widget::initObj()
             this,SLOT(slotReceSerial(QByteArray)));
 }
 
+/**
+  接收串口信息
+*/
 void Widget::slotReceSerial(const QByteArray &buf)
 {
-    ui->txtRecData->append(buf);
+    this->setShowText(buf);
+    m_receCount += buf.size();
+    ui->labReceive->setText(QString("接收:%1 字节").arg(m_receCount));
 }
 
 void Widget::slotUpdateTime()
 {
     ui->labDate->setText(QDate::currentDate().toString("yyyy-MM-dd"));
     ui->labTime->setText(QTime::currentTime().toString("hh:mm:ss"));
+}
+
+void Widget::slotAutoSendInfo()
+{
+    static int index = 0;
+    QByteArray sendBuff;
+    if (!m_pSerialObj->getSerialStaus())
+        return ;
+    if (index ==  (m_fileConList.count() - 1)){
+        m_pAutoSendTime->stop();
+        ui->btnSend->setText("发送");
+        setSendAreaEnable(true);
+        index = 0;
+        return;
+    }
+    sendBuff = m_fileConList.at(index).toAscii();
+
+    m_pSerialObj->slotWriteSerialPort(sendBuff);
+
+    m_sendCount += sendBuff.size();
+    ui->labSend->setText(QString("发送:%1 字节").arg(m_sendCount));
+
+    if (ui->chShowSend->isChecked())
+        this->setShowText(sendBuff);
+    index++;
 }
 
 /**
@@ -155,17 +196,44 @@ void Widget::on_btnOpen_clicked()
 */
 void Widget::on_btnSend_clicked()
 {
-    QByteArray tempBuff = ui->txtSend->text().toAscii();
-    if (tempBuff.isEmpty())
-        return;
+    QByteArray tempBuff;
+    if (ui->btnSend->text() == "发送")
+    {
+        ui->btnSend->setText("停止发送");
+        //如果是自动发送
+        if ( ui->ckIsAutoSend->isChecked()){
+            //开启定时器发送数据
+            if (!m_pAutoSendTime->isActive())
+                m_pAutoSendTime->start();
 
-    if (!m_pSerialObj->getSerialStaus())
-        return ;
+            setSendAreaEnable(false);
+        }else
+        {
+            if (!m_pSerialObj->getSerialStaus())
+                return ;
 
-    m_pSerialObj->slotWriteSerialPort(tempBuff);
+            tempBuff = ui->txtSend->toPlainText().toAscii();
+            if (tempBuff.isEmpty())
+                return;
 
-    if (ui->chShowSend->isChecked()){
-        ui->txtRecData->append("【send】"+tempBuff);
+            //将数据写入串口缓冲区
+            m_pSerialObj->slotWriteSerialPort(tempBuff);
+            m_sendCount += tempBuff.size();
+            ui->labSend->setText(QString("发送:%1 字节").arg(m_sendCount));
+
+            //显示已经发送的数据
+            if (ui->chShowSend->isChecked()){
+                ui->txtRecData->append("【send】"+tempBuff);
+            }
+        }
+
+    }else if (ui->btnSend->text() == "停止发送")
+    {
+        ui->btnSend->setText("发送");
+
+        m_pAutoSendTime->stop();
+
+        setSendAreaEnable(true);
     }
 
 }
@@ -179,20 +247,101 @@ void Widget::setSerialConEnable(const bool &flag)
     ui->cboxStopBit->setEnabled(flag);
 }
 
+void Widget::setSendAreaEnable(const bool &flag)
+{
+    ui->gbox3->setEnabled(flag);
+}
+
+void Widget::setShowText(const QString &txt)
+{
+    if (txt.isEmpty())
+        return;
+    QString str;
+    if (ui->chShowSendTime->isChecked()){
+        str.append("[");
+        str.append(DATETIME);
+        str.append("]");
+        str.append(txt);
+    }
+    if (ui->chAutoNewLine->isChecked()){
+        str.append("\r\n");
+    }
+    ui->txtRecData->append(str);
+}
+
+void Widget::setShowText(const QByteArray &txt)
+{
+    if (txt.isEmpty())
+        return;
+    QString str;
+    if (ui->chShowSendTime->isChecked()){
+        str.append("[");
+        str.append(DATETIME);
+        str.append("]");
+        str.append(txt);
+    }
+    if (ui->chAutoNewLine->isChecked()){
+        str.append("\r\n");
+    }
+    ui->txtRecData->append(txt);
+}
+
 void Widget::on_pbn_clearRece_clicked()
 {
     ui->txtRecData->clear();
+    m_receCount = 0;
 }
 
 void Widget::on_pbn_clearSend_clicked()
 {
     ui->txtSend->clear();
+    m_sendCount = 0;
 }
 
 void Widget::on_chFileSend_clicked(bool checked)
 {
-    if (checked){
-        ui->chFileSend->setChecked(true);
-        //
+    QString lineStr;
+    m_fileConList.clear();
+    QString info;
+    QFileDialog dialog;
+
+    if (checked)
+    {
+        dialog.setFileMode(QFileDialog::ExistingFiles);
+        dialog.setViewMode(QFileDialog::Detail);
+        dialog.setNameFilter("(*.txt)");
+        if (dialog.exec()){
+            info = dialog.selectedFiles().at(0);
+        }
+        if (info.isEmpty())
+            return;
+
+        QFile file(info);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
+        QTextStream in(&file);
+        while (!in.atEnd()){
+            lineStr = in.readLine();
+
+            if (!lineStr.isEmpty())
+                m_fileConList.append(lineStr);
+        }
+
+        file.close();
+        ui->txtSend->setText("启用外部数据源\r\n"+info);
+    }else{
+        ui->txtSend->setText("http://kevinlq.com/");
     }
+    ui->txtSend->setEnabled(checked);
+#if 0
+    for (int i = 0;i < m_fileConList.count();i++)
+    {
+        qDebug()<<m_fileConList.at(i);
+    }
+#endif
+}
+
+void Widget::on_cboxTime_activated(const QString &arg1)
+{
+    m_pAutoSendTime->setInterval(arg1.toInt());
 }

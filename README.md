@@ -58,6 +58,11 @@ TableView嵌入CheckBox，采用自定义委托和模型
 ![](/screen/serialTool.png)
 
 ## 饼状图雏形
+
+|  OS   | W7 64b    |
+| --- | --- |
+|  Qt   | 4.8.6    |
+| 编译器 | mingw32 |
 ...待完善   
 
 ![](/screen/pieChartDemo.png)

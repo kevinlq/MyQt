@@ -12,9 +12,7 @@ public:
     explicit LPieChart2(QWidget *parent = 0);
     ~LPieChart2();
 
-    void setPieItems(const QString &name,const int &index);
-
-    void setPieTotalNum();
+    void setData(QVector<double> value,QVector<QColor> colors);
 
 private:
     void init();
@@ -23,7 +21,8 @@ protected:
     virtual void paintEvent(QPaintEvent *event);
 
 private:
-    QList<PieItemDataPrivate>m_itemList;
+    QVector<double> m_qvValues;
+    QVector<QColor> m_qvColors;
 };
 
 #endif // LPIECHART2_H

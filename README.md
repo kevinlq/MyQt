@@ -66,5 +66,6 @@ TableView嵌入CheckBox，采用自定义委托和模型
 ...待完善   
 
 ![](/screen/pieChartDemo.png)
+![](/screen/pieChartDemo2.png)
 
 

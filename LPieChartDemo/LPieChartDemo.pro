@@ -11,6 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LPieChartDemo
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -std=c++0x
+
+
+DEPENDPATH += bin
 
 SOURCES += main.cpp\
         widget.cpp \

@@ -31,13 +31,13 @@ LPieChart2::~LPieChart2()
 {
 }
 
-void LPieChart2::setPieItems(const QString &name, const int &index)
+void LPieChart2::setData(QVector<double> value, QVector<QColor> colors)
 {
-    PieItemDataPrivate pieItem;
-    pieItem.pieName = name;
-    pieItem.pieValue = index;
+    m_qvValues = value;
+    m_qvColors = colors;
 
-    m_itemList.append(pieItem);
+    repaint();
+    update();
 }
 
 void LPieChart2::init()
@@ -50,27 +50,37 @@ void LPieChart2::paintEvent(QPaintEvent *event)
     painter.setPen(Qt::NoPen);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    //椭圆
-    QRectF rect_top(10.0,20.0,PIE_RADIUS,PIE_RADIUS);
-    painter.setBrush(QColor(PIE_COLOR));
+    QPen pen;
+    QRectF size;
+    pen.setColor(Qt::black);
+    pen.setWidth(2);
+    painter.setPen(pen);
 
-    //绘制椭圆
-    painter.drawEllipse(rect_top);
-
-    //绘制图标指示
-    painter.setBrush(QColor(LINE_COLOR));
-
-    QPolygonF polygon;
-    polygon << QPointF(10.0,20.0) << QPointF(20.2, 30.2);
-
-    painter.drawPolyline(polygon);
-
-
-    //根据list绘制等分数目
-    int count = m_itemList.count();
-    if (count > 0){
-        int startAngle = 30 * 16;
-        int spanAngle = 45 * 16;
+    if (this->height() > this->width()){
+        size = QRectF(5,5,this->width() - 10,this->width() - 10);
     }
+    else{
+        size = QRectF(5,5,this->height() - 10,this->height() - 10);
+    }
+
+    double sum = 0.0,startAng = 0.0;
+    double angle,endAng,percent;
+
+    for (int i = 0; i < m_qvValues.size(); i ++)
+    {
+        sum += m_qvValues.at(i);
+    }
+    for (int i = 0; i < m_qvValues.size(); i ++)
+    {
+        percent = m_qvValues.at(i) / sum;
+        angle = percent * 360.0;
+        endAng = startAng + angle;
+
+        painter.setBrush(m_qvColors.at(i));
+        painter.drawPie(size, startAng*16, angle * 16);
+
+        startAng = endAng;
+    }
+
     QWidget::paintEvent(event);
 }

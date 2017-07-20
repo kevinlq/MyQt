@@ -226,7 +226,6 @@ void Widget::on_btnSend_clicked()
                 ui->txtRecData->append("【send】"+tempBuff);
             }
         }
-
     }else if (ui->btnSend->text() == "停止发送")
     {
         ui->btnSend->setText("发送");
@@ -235,7 +234,6 @@ void Widget::on_btnSend_clicked()
 
         setSendAreaEnable(true);
     }
-
 }
 
 void Widget::setSerialConEnable(const bool &flag)
@@ -289,13 +287,11 @@ void Widget::setShowText(const QByteArray &txt)
 void Widget::on_pbn_clearRece_clicked()
 {
     ui->txtRecData->clear();
-    m_receCount = 0;
 }
 
 void Widget::on_pbn_clearSend_clicked()
 {
     ui->txtSend->clear();
-    m_sendCount = 0;
 }
 
 void Widget::on_chFileSend_clicked(bool checked)
@@ -344,4 +340,13 @@ void Widget::on_chFileSend_clicked(bool checked)
 void Widget::on_cboxTime_activated(const QString &arg1)
 {
     m_pAutoSendTime->setInterval(arg1.toInt());
+}
+
+void Widget::on_pushButton_2_clicked()
+{
+    m_sendCount = 0;
+    m_receCount = 0;
+
+    ui->labReceive->setText(QString("接收:%1 字节").arg(m_receCount));
+    ui->labSend->setText(QString("发送:%1 字节").arg(m_sendCount));
 }

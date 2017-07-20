@@ -47,6 +47,8 @@ private Q_SLOTS:
 
     void on_cboxTime_activated(const QString &arg1);
 
+    void on_pushButton_2_clicked();
+
 private:
     void setSerialConEnable(const bool&flag);
 

@@ -255,7 +255,7 @@
              </size>
             </property>
             <property name="text">
-             <string>清除发送</string>
+             <string>清除输入</string>
             </property>
            </widget>
           </item>
@@ -409,6 +409,12 @@ color: rgb(255, 255, 127);</string>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>复位计数</string>
        </property>

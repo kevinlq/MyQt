@@ -57,4 +57,9 @@ TableView嵌入CheckBox，采用自定义委托和模型
 ## 串口助手
 ![](/screen/serialTool.png)
 
+## 饼状图雏形
+...待完善   
+
+![](/screen/pieChartDemo.png)
+
 

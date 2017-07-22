@@ -84,3 +84,8 @@ void LPieChart2::paintEvent(QPaintEvent *event)
 
     QWidget::paintEvent(event);
 }
+
+QSize LPieChart2::sizeHint() const
+{
+    //
+}

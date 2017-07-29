@@ -18,11 +18,9 @@ DEPENDPATH += bin
 
 SOURCES += main.cpp\
         widget.cpp \
-    lpiechart.cpp \
     lpiechart2.cpp
 
 HEADERS  += widget.h \
-    lpiechart.h \
     lpiechart2.h
 
 FORMS    += widget.ui

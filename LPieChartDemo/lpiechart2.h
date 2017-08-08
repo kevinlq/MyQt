@@ -1,4 +1,4 @@
-﻿#ifndef LPIECHART2_H
+#ifndef LPIECHART2_H
 #define LPIECHART2_H
 
 #include <QWidget>
@@ -12,7 +12,8 @@ public:
     explicit LPieChart2(QWidget *parent = 0);
     ~LPieChart2();
 
-    void setData(QVector<double> value,QVector<QColor> colors);
+    void setData(QVector<double> value,QVector<QColor> colors,
+                 QVector<QString> names);
 
 private:
     void init();
@@ -25,6 +26,7 @@ protected:
 private:
     QVector<double> m_qvValues;
     QVector<QColor> m_qvColors;
+    QVector<QString>m_qvName;
 };
 
 #endif // LPIECHART2_H

@@ -21,6 +21,8 @@ private:
 protected:
     virtual void paintEvent(QPaintEvent *event);
 
+    virtual QSize sizeHint()const;
+
 private:
     QVector<double> m_qvValues;
     QVector<QColor> m_qvColors;

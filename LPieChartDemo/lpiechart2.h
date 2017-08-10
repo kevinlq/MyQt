@@ -1,4 +1,4 @@
-#ifndef LPIECHART2_H
+﻿#ifndef LPIECHART2_H
 #define LPIECHART2_H
 
 #include <QWidget>
@@ -20,8 +20,6 @@ private:
 
 protected:
     virtual void paintEvent(QPaintEvent *event);
-
-    virtual QSize sizeHint()const;
 
 private:
     QVector<double> m_qvValues;

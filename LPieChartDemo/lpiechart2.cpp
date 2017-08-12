@@ -1,4 +1,4 @@
-#include "lpiechart2.h"
+﻿#include "lpiechart2.h"
 
 #include <QPaintEvent>
 #include <QPainter>
@@ -7,8 +7,9 @@
 
 #include <QDebug>
 
-#define PIE_BOTTON_DIS  80
-#define RECTANGLE_WIDTH 10.0
+#define PIE_BOTTON_DIS  this->height() - 10
+#define PIE_RIGHT_DIS   this->width() - 60
+#define RECTANGLE_WIDTH 12.0
 
 struct PieItemDataPrivate{
     QString pieName;
@@ -39,6 +40,7 @@ void LPieChart2::setData(QVector<double> value, QVector<QColor> colors,
 
 void LPieChart2::init()
 {
+    this->setMinimumSize(400,320);
 }
 
 void LPieChart2::paintEvent(QPaintEvent *event)
@@ -54,12 +56,10 @@ void LPieChart2::paintEvent(QPaintEvent *event)
     painter.setPen(pen);
 
     if (this->height() > this->width()){
-        size = QRectF(5,5,this->width() - PIE_BOTTON_DIS,
-                      this->width() - PIE_BOTTON_DIS);
+        size = QRectF(5,5, PIE_BOTTON_DIS,PIE_BOTTON_DIS);
     }
     else{
-        size = QRectF(5,5,this->height() - PIE_BOTTON_DIS,
-                      this->height() - PIE_BOTTON_DIS);
+        size = QRectF(5,5,PIE_BOTTON_DIS,PIE_BOTTON_DIS);
     }
 
     double sum = 0.0,startAng = 0.0;
@@ -80,8 +80,8 @@ void LPieChart2::paintEvent(QPaintEvent *event)
         painter.drawPie(size, startAng*16, angle * 16);
 
         rectangleTop += 15;
-        QRectF rectangle(this->width () - 70,rectangleTop, RECTANGLE_WIDTH, RECTANGLE_WIDTH);
-        QRectF textF(this->width () - 70 +RECTANGLE_WIDTH+5,rectangleTop,70,10);
+        QRectF rectangle(PIE_RIGHT_DIS,rectangleTop, RECTANGLE_WIDTH, RECTANGLE_WIDTH);
+        QRectF textF(PIE_RIGHT_DIS + RECTANGLE_WIDTH + 5,rectangleTop,70,10);
         painter.drawRect (rectangle);
         painter.drawText (textF,m_qvName.at (i));
 
@@ -91,7 +91,3 @@ void LPieChart2::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 }
 
-QSize LPieChart2::sizeHint() const
-{
-    //
-}

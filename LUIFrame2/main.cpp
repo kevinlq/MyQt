@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     file.open (QFile::ReadOnly);
     QString css = QLatin1String(file.readAll ());
     qApp->setStyleSheet (css);
+	file.close ();
 
     AppInit init;
     init.init ();

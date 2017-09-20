@@ -50,6 +50,13 @@ int main(int argc, char *argv[])
 
 ```
 
+test_python.py文件内容:
+
+```python
+def helloworld():
+    print("hello world!")
+```
+
 工程结构为:
 
 ![工程结构](/PythonQtDemo/screen/screen.png)

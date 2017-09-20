@@ -52,4 +52,4 @@ int main(int argc, char *argv[])
 
 工程结构为:
 
-![工程结构](/screen/PythonQtDemo/screen/screen.png)
+![工程结构](/PythonQtDemo/screen/screen.png)

@@ -70,3 +70,7 @@ TableView嵌入CheckBox，采用自定义委托和模型
 ![](/screen/pieChartDemo2.png)
 ![](/screen/pieChartDemo3.png)
 
+
+# change blog
+
+- V0.0.6 添加python和Qt混合编程demo(PythonQtDemo);

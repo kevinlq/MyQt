@@ -53,3 +53,7 @@ int main(int argc, char *argv[])
 工程结构为:
 
 ![工程结构](/PythonQtDemo/screen/screen.png)
+
+运行结果:
+
+![运行结果](/PythonQtDemo/screen/run_result.png);

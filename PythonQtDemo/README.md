@@ -1,6 +1,6 @@
 # Qt Python 测试工程
 
-- Qt:5.7 32b
+- Qt:4.9.6,5.4.2,5.7
 - Mingw 5.3
 - Python2.7
 - OS:windows7 64b

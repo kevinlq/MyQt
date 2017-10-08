@@ -74,3 +74,4 @@ TableView嵌入CheckBox，采用自定义委托和模型
 # change log
 
 - V0.0.6 添加python和Qt混合编程demo(PythonQtDemo);
+- V0.0.7 添加XML操作demo

@@ -1,17 +1,7 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2017-09-16T19:30:55
-#
-#-------------------------------------------------
-
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-TARGET = LQSystemPathOP
 TEMPLATE = app
 
-DEFINES +=DEBUG_OUT
+QT += qml quick
+CONFIG += c++11
 
 win32{
     CONFIG += debug_and_release
@@ -31,9 +21,12 @@ win32{
 
 DEPENDPATH += bin
 
-SOURCES += main.cpp\
-        widget.cpp
+SOURCES += main.cpp
 
-HEADERS  += widget.h
+RESOURCES += qml.qrc
 
-FORMS    += widget.ui
+# Additional import path used to resolve QML modules in Qt Creator's code model
+QML_IMPORT_PATH =
+
+# Default rules for deployment.
+include(deployment.pri)

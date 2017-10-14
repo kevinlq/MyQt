@@ -1,18 +1,32 @@
 import QtQuick 2.5
+import QtQuick.Controls 2.0
 import QtQuick.Window 2.2
 
 Window {
     visible: true
-    width: 640
-    height: 480
+    width: 680
+    height: 420
+    color: "#E4E4ED"
+    title: qsTr("系统环境变量配置工具")
 
-    Rectangle {
-        id:inp;
-        width: parent.width - 10
-        height: 30
+    ListModel {
+        id:tableModel
 
-        color: "green"
+    }
 
-        anchors.centerIn: parent
+    TableView {
+        id: tableView
+        anchors.fill: parent;
+        model: tableModel
+
+        TableViewColumn {
+            role: "variable"
+            title: qsTr("变量")
+        }
+
+        TableViewColumn {
+            role: "value"
+            title: qsTr("值")
+        }
     }
 }

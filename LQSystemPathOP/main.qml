@@ -5,4 +5,14 @@ Window {
     visible: true
     width: 640
     height: 480
+
+    Rectangle {
+        id:inp;
+        width: parent.width - 10
+        height: 30
+
+        color: "green"
+
+        anchors.centerIn: parent
+    }
 }

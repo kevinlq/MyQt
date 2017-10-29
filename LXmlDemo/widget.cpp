@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 
 #include "parsedom.h"
+#include "svgparsedom.h"
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -9,12 +10,14 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString fileName = QApplication::applicationDirPath ()+"/person.xml";
+    //QString fileName = QApplication::applicationDirPath ()+"/person.xml";
+    QString fileName = QApplication::applicationDirPath ()+"/WeChat.svg";
+//    ParseDom dom;
+//    dom.parse (fileName);
 
-    ParseDom dom;
-    dom.parse (fileName);
-
-    dom.parse2 (fileName);
+//    dom.parse2 (fileName);
+    SVGParsedom svg;
+    svg.parse (fileName);
 }
 
 Widget::~Widget()

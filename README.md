@@ -70,8 +70,16 @@ TableView嵌入CheckBox，采用自定义委托和模型
 ![](/screen/pieChartDemo2.png)
 ![](/screen/pieChartDemo3.png)
 
+## LXmlDemo
+
+- XML文件操作demo
+
+## SVGPicOperator
+
+- SVG图片操作
 
 # change log
 
 - V0.0.6 添加python和Qt混合编程demo(PythonQtDemo);
 - V0.0.7 添加XML操作demo
+- V0.0.8 添加SVG图片属性值修改demo

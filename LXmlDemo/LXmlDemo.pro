@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = LXmlDemo
 TEMPLATE = app
 
-
 win32{
     CONFIG += debug_and_release
     CONFIG(release, debug|release) {
@@ -47,9 +46,11 @@ DEPENDPATH += bin
 
 SOURCES += main.cpp\
         widget.cpp \
-    parsedom.cpp
+    parsedom.cpp \
+    svgparsedom.cpp
 
 HEADERS  += widget.h \
-    parsedom.h
+    parsedom.h \
+    svgparsedom.h
 
 FORMS    += widget.ui

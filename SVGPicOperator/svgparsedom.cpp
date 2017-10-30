@@ -29,24 +29,38 @@ void SVGParsedom::parse(const QString &strFileName)
         return;
     }
 
-    QDomDocument document("fill");
+    //将XML文件内容读取到dom中
+    QDomDocument document;
     if ( !document.setContent (&file)){
         qDebug()<<"parse file failed!";
         file.close ();
         return;
     }
+    file.close ();
 
+#if 0
     QDomElement docElem = document.documentElement ();
     QDomNode n = docElem.firstChild ();
     while ( !n.isNull ()){
         QDomElement e = n.toElement ();
         if ( !e.isNull ()){
             qDebug()<<e.tagName ()<<" "<<e.text ()<<endl;
-            if (e.nodeName () == "svg"){
-                qDebug()<<"node name:"<<e.nodeName ();
-            }
+            qDebug()<<"name:"<<e.nodeName ();
         }
         n = n.nextSibling ();
     }
+#endif
 
+    QDomNode firstNode = document.firstChild ();
+    qDebug()<<firstNode.nodeName ()<< " value:"<<firstNode.nodeValue ();
+    //返回根元素
+    QDomElement docElem = document.documentElement ();
+    //返回根节点的第一个子节点
+    QDomNode n = document.firstChild ();
+    while ( !n.isNull ())
+    {
+        QDomElement e = n.toElement ();
+        qDebug()<<e.tagName ();
+        n = n.nextSibling ();
+    }
 }

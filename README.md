@@ -78,13 +78,15 @@ TableView嵌入CheckBox，采用自定义委托和模型
 
 - SVG图片操作
 
-## LMThreadOP
+## [LMThreadOP](/LMThreadOP/)
 
 - 多线程操作，加快计算速度
 
 使用QQueue创建了一个消息队列，消费者线程从中读取数据，处理后通过信号将结果发送出去.
 
 ![](/screen/thread.png)
+
+[参考文章地址](https://segmentfault.com/a/1190000010261721)
 
 # change log
 

@@ -78,8 +78,17 @@ TableView嵌入CheckBox，采用自定义委托和模型
 
 - SVG图片操作
 
+## LMThreadOP
+
+- 多线程操作，加快计算速度
+
+使用QQueue创建了一个消息队列，消费者线程从中读取数据，处理后通过信号将结果发送出去.
+
+![](/screen/thread.png)
+
 # change log
 
 - V0.0.6 添加python和Qt混合编程demo(PythonQtDemo);
 - V0.0.7 添加XML操作demo
 - V0.0.8 添加SVG图片属性值修改demo
+- V0.0.9 添加多线程demo

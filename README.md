@@ -31,9 +31,13 @@ javascript:2.0
 界面封装库  
 Qt:4.8.6  
 
-![](/screen/luiframe_project.png)
+<center>
+<img src="/screen/luiframe_project.png" width="50%" height="50%" />
+</center>
 
-![](/screen/luiframe.png)
+<center>
+<img src="/screen/luiframe.png" width="50%" height="50%" />
+</center>
 
 
 横排工具栏 

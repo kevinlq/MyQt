@@ -35,13 +35,10 @@ Qt:4.8.6
 <img src="/screen/luiframe_project.png" width="50%" height="50%" />
 </center>
 
+横排工具栏   
 <center>
 <img src="/screen/luiframe.png" width="50%" height="50%" />
 </center>
-
-
-横排工具栏 
-![](/screen/luiframe2.png)
 
 ## 5. TableView嵌入CheckBox
 

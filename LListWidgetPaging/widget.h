@@ -11,6 +11,8 @@ struct MyItem :public QWidget
     MyItem();
     ~MyItem();
 
+    int m_nPeriod;
+
 private:
     QLabel *m_pLabelStr;
     QPushButton *m_pPbnChange;
@@ -27,6 +29,8 @@ class Widget : public QWidget
 public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
+
+    void insertItem(int nTotalNum);
 
 private:
     QVector<MyItem *>m_vtrItem;

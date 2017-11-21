@@ -6,7 +6,8 @@
 #include <QHBoxLayout>
 #include <QDebug>
 
-#define MY_ITEM_SIZE    100
+#define MY_ITEM_NUM    10
+#define ITEM_HEIGHT     50
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -17,9 +18,16 @@ Widget::Widget(QWidget *parent) :
     m_vtrItem.clear ();
 
     m_nPageSize = -1;
-    m_nRecordCount = MY_ITEM_SIZE;
+    m_nRecordCount = MY_ITEM_NUM;
     m_nPageCount = -1;
 
+    //计算listwidget的高度，然后可以计算出没页可以显示的item数量
+    int nViewHight = ui->listWidget->height ();
+    m_nPageSize = nViewHight /ITEM_HEIGHT;
+
+    qDebug()<<"height:"<<nViewHight<<" size:"<<m_nPageSize;
+
+#if 0
     //创建item
     for (int i = 0; i < m_nRecordCount; i++)
     {
@@ -28,10 +36,11 @@ Widget::Widget(QWidget *parent) :
         int nRow = ui->listWidget->count ();
         ui->listWidget->insertItem (nRow,item);
         ui->listWidget->setItemWidget (item,pItem);
-        item->setSizeHint (QSize(0,50));
+        item->setSizeHint (QSize(0,ITEM_HEIGHT));
 
         m_vtrItem.push_back (pItem);
     }
+#endif
 }
 
 Widget::~Widget()
@@ -51,6 +60,14 @@ Widget::~Widget()
     }
 }
 
+void Widget::insertItem(int nTotalNum)
+{
+    if ( nTotalNum >= m_nPageSize )
+    {
+        //
+    }
+}
+
 void Widget::on_pbnPre_clicked()
 {
     //
@@ -63,6 +80,8 @@ void Widget::on_pbnNext_clicked()
 
 MyItem::MyItem()
 {
+    m_nPeriod = -1;
+
     m_pLabelStr = new QLabel(this);
     m_pLabelStr->setText ("this is sample");
     m_pPbnChange = new QPushButton(this);

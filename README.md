@@ -55,13 +55,19 @@ TableView嵌入CheckBox，采用自定义委托和模型
 3. 支持多选/全部选中对数据进行删除；
 4. 对数据进行动态修改(**待完成**)
 
-![tableView checkbox](/screen/tableview.png);
+<center>
+<img src="/screen/tableview.png" width="50%" height="50%" />
+</center>
 
-![tableView checkbox](/screen/tableview2.png);
+<center>
+<img src="/screen/tableview2.png" width="50%" height="50%" />
+</center>
 
 
-## 6. 串口助手
-![](/screen/serialTool.png)
+## 6. 串口助手  
+<center>
+<img src="/screen/serialTool.png" width="50%" height="50%" />
+</center>
 
 ## 7. 饼状图雏形
 
@@ -72,8 +78,14 @@ TableView嵌入CheckBox，采用自定义委托和模型
 
 ...待完善   
 
-![](/screen/pieChartDemo.png)
-![](/screen/pieChartDemo2.png)
+<center>
+<img src="/screen/pieChartDemo.png" width="50%" height="50%" />
+</center>
+
+<center>
+<img src="/screen/pieChartDemo2.png" width="50%" height="50%" />
+</center>
+
 ![](/screen/pieChartDemo3.png)
 
 ## 8. LXmlDemo

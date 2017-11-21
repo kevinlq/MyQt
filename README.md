@@ -92,6 +92,7 @@ TableView嵌入CheckBox，采用自定义委托和模型
 
 >QImage操作图像像素
 
+![示例](/screen/LQImageOP.png)
 
 # change log
 

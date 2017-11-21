@@ -30,14 +30,19 @@ javascript:2.0
 ## 4. LUIFrame
 界面封装库  
 Qt:4.8.6  
-
 <center>
 <img src="/screen/luiframe_project.png" width="50%" height="50%" />
 </center>
 
-横排工具栏   
+工具栏： 
 <center>
 <img src="/screen/luiframe.png" width="50%" height="50%" />
+</center>
+
+
+横排工具栏 ： 
+<center>
+<img src="/screen/luiframe2.png" width="50%" height="50%" />
 </center>
 
 ## 5. TableView嵌入CheckBox

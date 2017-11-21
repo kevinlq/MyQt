@@ -112,6 +112,29 @@ TableView嵌入CheckBox，采用自定义委托和模型
 
 ![示例](/screen/LQImageOP.png)
 
+## 12. [LListWidgetPaging](/LListWidgetPaging)
+
+QListWidget元素进行分页展示
+![LListWidgetPaging](/screen/LListWidgetPaging.png)
+
+```C++
+分页存储过程或者页面分页中的分页算法:
+
+int pagesize // 每页记录数
+
+int recordcount // 总记录数
+
+int pagecount // 总页数
+
+pagecount=(recordcount+pagesize-1)/pagesize
+
+此方法得出的结果为实际页码
+
+pagecount=(recordcount-1)/pagesize
+
+此方法得出的结果为实际页码-1
+```
+
 # change log
 
 - V0.0.6 添加python和Qt混合编程demo(PythonQtDemo);
@@ -119,3 +142,4 @@ TableView嵌入CheckBox，采用自定义委托和模型
 - V0.0.8 添加SVG图片属性值修改demo
 - V0.0.9 添加多线程demo
 - V0.1.0 添加QImage操作图像素
+- V0.1.1 添加QListWidget分页排序

@@ -58,6 +58,7 @@ Thumbs.db
 *.opensdf
 *.vcxproj
 *vcxproj.*
+*.qmake.stash
 
 # MinGW generated files
 *.Debug

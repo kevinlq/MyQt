@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<persons name="Qt">
+	<person id="1">
+		<name>wang</name>
+		<age>25</age>
+		<email>kevinlq0912@163.com</email>
+		<website>www.kevinlq.com</website>
+	</person>
+	<person id="2">
+		<name>zhao</name>
+		<age>24</age>
+		<email>accHer@sugon.com</email>
+		<website>www.sugon.com</website>
+	</person>
+</persons>

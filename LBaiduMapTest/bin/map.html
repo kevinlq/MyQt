@@ -28,7 +28,7 @@
       //map.addControl(new BMap.MapTypeControl());		    //地图、卫星、三维显示
       //map.addControl(new BMap.OverviewMapControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, isOpen: true})); //缩略图控件
       //map.addControl(new BMap.NavigationControl({offset: new BMap.Size(10, 90)})); //地图平移缩放控件
-      //map.enableScrollWheelZoom();                          // 启用滚轮放大缩小。
+      map.enableScrollWheelZoom();                          // 启用滚轮放大缩小。
       //map.enableKeyboard();                                 // 启用键盘操作。
       //map.enableContinuousZoom();                           // 启用连续缩放
 
@@ -112,7 +112,7 @@
       map.addOverlay(circle);     //添加到地图上
       circle.enableEditing();     //开启圆编辑功能
 
-      alert(" lot:"+lot + "\r\n lat:"+lat+"\r\n radius:"+radius);
+      //alert(" lot:"+lot + "\r\n lat:"+lat+"\r\n radius:"+radius);
     };
 
       map.addEventListener("mousemove",function(e)

@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForCStrings(code);
     QTextCodec::setCodecForTr(code);
 #else
-    QTextCodec::setCodecForLocale(code);
-    QTextCodec::setCodecForCStrings(code);
-    QTextCodec::setCodecForTr(code);
+//    QTextCodec::setCodecForLocale(code);
+//    QTextCodec::setCodecForCStrings(code);
+//    QTextCodec::setCodecForTr(code);
 #endif
 
     QFile file(":/image/black.css");

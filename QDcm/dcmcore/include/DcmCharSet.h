@@ -47,6 +47,7 @@ public:
         Encoding_ISO_IR_192,        ///< Utf8
         Encoding_ISO_2022_IR_13,    ///< Shift-JIS
         Encoding_ISO_2022_IR_87,    ///< ISO-2022-JP
+        Encoding_ISO_2022_GBK,      ///<IOS-2022-GBK
 
         Encoding_Invalid            ///< Invalid unknown encoding
     } Encoding;

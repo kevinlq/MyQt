@@ -30,10 +30,8 @@ HEADERS += \
     include/DicomWindow.h \
     include/MainWindow.h
 
+LIBS +=-L$${DIR_DEPEND_DEST} -ldcmcore$${FILE_POSTFIX}
+LIBS +=-L$${DIR_DEPEND_DEST} -ldcmimage$${FILE_POSTFIX}
 
 RESOURCES += \
     resources/dcmview.qrc
-
-
-LIBS +=-L$${DIR_DEPEND_DEST} -ldcmcore$${FILE_POSTFIX}
-LIBS +=-L$${DIR_DEPEND_DEST} -ldcmimage$${FILE_POSTFIX}

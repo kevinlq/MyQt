@@ -32,6 +32,7 @@ static QMap<QString, DcmCharSet> createCharSetMap()
     map.insert("ISOIR192", DcmCharSet(DcmCharSet::Encoding_ISO_IR_192));
     map.insert("ISO2022IR13", DcmCharSet(DcmCharSet::Encoding_ISO_2022_IR_13));
     map.insert("ISO2022IR87", DcmCharSet(DcmCharSet::Encoding_ISO_2022_IR_87));
+    map.insert("ISO2022GBK", DcmCharSet(DcmCharSet::Encoding_ISO_2022_GBK));
     return map;
 }
 
@@ -130,6 +131,7 @@ DcmCharSet DcmCharSet::forName(const QString &name)
     key.remove(QChar(' '));
     key.remove(QChar('_'));
     key.remove(QChar('-'));
+    key.remove(QChar('\\'));
 
     if (charSetMap.contains(key)) {
         return charSetMap[key];
@@ -143,6 +145,7 @@ QTextCodec* DcmCharSet::findCodecByEncoding(DcmCharSet::Encoding enc)
     QTextCodec *codec = 0;
     switch (enc) {
     case Encoding_GB18030:
+    case Encoding_ISO_2022_GBK: //add qi_li-20190111
         codec = QTextCodec::codecForName("gb18030");
         break;
     case Encoding_ISO_IR_6:
@@ -188,6 +191,9 @@ QTextCodec* DcmCharSet::findCodecByEncoding(DcmCharSet::Encoding enc)
     case Encoding_ISO_2022_IR_87:
         codec = QTextCodec::codecForName("iso-2022-jp");
         break;
+//    case Encoding_ISO_2022_GBK:
+//        codec = QTextCodec::codecForName("iso-2022-gbk");
+//        break;
     default:
         break;
     }

@@ -12,28 +12,22 @@ QT	 +=core widgets network xml
 
 TEMPLATE = app
 
-TARGET	 =dcmview
+TARGET	 =echoscu
 
 INCLUDEPATH +=$$PWD/include
 
 INCLUDEPATH +=$$PWD/../dcmcore/include
 INCLUDEPATH +=$$PWD/../dcmimage/include
+INCLUDEPATH +=$$PWD/../dcmnet/include
 
 SOURCES += \
-    src/DicomTreeModel.cpp \
-    src/DicomWindow.cpp \
-    src/main.cpp \
-    src/MainWindow.cpp
+    $$PWD/cpp/CEchoSCU.cpp \
+    $$PWD/cpp/main.cpp
 
 HEADERS += \
-    include/DicomTreeModel.h \
-    include/DicomWindow.h \
-    include/MainWindow.h
-
-
-RESOURCES += \
-    resources/dcmview.qrc
+    $$PWD/include/CEchoSCU.h
 
 
 LIBS +=-L$${DIR_DEPEND_DEST} -ldcmcore$${FILE_POSTFIX}
 LIBS +=-L$${DIR_DEPEND_DEST} -ldcmimage$${FILE_POSTFIX}
+LIBS +=-L$${DIR_DEPEND_DEST} -ldcmnet$${FILE_POSTFIX}

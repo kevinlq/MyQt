@@ -4,7 +4,9 @@ SUBDIRS +=\
     $$PWD/dcmcore \
     $$PWD/dcmimage \
     $$PWD/dcmmod \
-    $$PWD/dcmview
+    $$PWD/dcmnet \
+    $$PWD/dcmview \
+    $$PWD/echoscu
 
 
 CONFIG	+=ordered

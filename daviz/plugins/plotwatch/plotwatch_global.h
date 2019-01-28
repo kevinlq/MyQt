@@ -1,0 +1,12 @@
+#ifndef PLOTWATCH_GLOBAL_H
+#define PLOTWATCH_GLOBAL_H
+
+#include <qglobal.h>
+
+#ifdef PLOTWATCH_LIBRARY
+#define PLOTWATCH_EXPORT Q_DECL_EXPORT
+#else
+#define PLOTWATCH_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PLOTWATCH_GLOBAL_H

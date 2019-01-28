@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/media-eject.png</file>
+        <file>icons/media-playback-pause.png</file>
+        <file>icons/media-playback-start.png</file>
+        <file>icons/media-playback-stop.png</file>
+        <file>icons/media-record.png</file>
+        <file>icons/media-seek-backward.png</file>
+        <file>icons/media-seek-forward.png</file>
+        <file>icons/media-skip-backward.png</file>
+        <file>icons/media-skip-forward.png</file>
+        <file>icons/arrow-right.png</file>
+        <file>icons/arrow-left.png</file>
+        <file>icons/document-save.png</file>
+        <file>icons/view-refresh.png</file>
+        <file>translations/Replay.zh_CN.qm</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>translations/TestRadar.zh_CN.qm</file>
+    </qresource>
+</RCC>

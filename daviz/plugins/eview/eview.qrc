@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shaders/sweepeffect.frag</file>
+        <file>shaders/sweepeffect.vert</file>
+        <file>translations/EView.zh_CN.qm</file>
+        <file>shaders/rangefilter.vert</file>
+        <file>shaders/rangefilter.frag</file>
+    </qresource>
+</RCC>

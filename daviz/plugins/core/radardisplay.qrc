@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>styles/dark.css</file>
+        <file>translations/Core.zh_CN.qm</file>
+    </qresource>
+</RCC>

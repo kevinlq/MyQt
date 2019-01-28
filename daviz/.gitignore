@@ -1,0 +1,11 @@
+*.swp
+ui_*.h
+*.rcc
+Makefile*
+*.user
+*.user.*
+object_script.*
+*.db
+debug/*
+release/*
+

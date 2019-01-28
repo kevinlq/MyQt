@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/zoom-original.png</file>
+        <file>icons/draw-arrow-back.png</file>
+        <file>icons/draw-arrow-down.png</file>
+        <file>icons/daviz.png</file>
+    </qresource>
+</RCC>

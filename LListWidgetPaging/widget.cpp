@@ -27,7 +27,7 @@ Widget::Widget(QWidget *parent) :
 
     qDebug()<<"height:"<<nViewHight<<" size:"<<m_nPageSize;
 
-#if 0
+#if 1
     //创建item
     for (int i = 0; i < m_nRecordCount; i++)
     {
@@ -47,17 +47,8 @@ Widget::~Widget()
 {
     delete ui;
 
-    if ( !m_vtrItem.isEmpty ())
-    {
-        for ( int i = 0; i < m_vtrItem.size (); i++)
-        {
-            if ( m_vtrItem[i] != NULL)
-            {
-                delete m_vtrItem[i];
-                m_vtrItem[i] = NULL;
-            }
-        }
-    }
+    qDeleteAll(m_vtrItem);
+    m_vtrItem.clear ();
 }
 
 void Widget::insertItem(int nTotalNum)

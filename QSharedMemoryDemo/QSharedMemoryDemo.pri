@@ -1,0 +1,28 @@
+!isEmpty(QTC_PRI_INCLUDED):error("QSharedMemoryDemo.pri already included")
+QTC_PRI_INCLUDED = 1
+
+QTCREATOR_VERSION = 1.1.0
+QTCREATOR_COMPAT_VERSION = 1.1.0
+VERSION = $$QTCREATOR_VERSION
+QTCREATOR_DISPLAY_VERSION = 1.1.0
+QTCREATOR_COPYRIGHT_YEAR = 2022
+BINARY_ARTIFACTS_BRANCH = 1.1
+
+CONFIG += c++14
+CONFIG += skip_target_version_ext
+
+# Config Para
+CONFIG(debug, debug|release):{
+    FILE_POSTFIX = d
+    DIR_COMPILEMODE = Debug
+}
+else:CONFIG(release, debug|release):{
+    FILE_POSTFIX =
+    DIR_COMPILEMODE = Release
+}
+
+APP_CHILD=CP
+
+DEFINES += $$shell_quote(APP_CHILD=\"$$APP_CHILD\")
+
+IDE_BIN_PATH = $$PWD/bin/$$DIR_COMPILEMODE

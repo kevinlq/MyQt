@@ -1,46 +1,34 @@
 #include "CommonInc.h"
 
 #include "KCombox.h"
-#include "KModel.h"
-#include "KListView.h"
-#include "KDelegate.h"
-
 
 KCombox::KCombox(QWidget *parent)
     : QComboBox(parent)
 {
-    m_pView = new KListView(this);
-    m_pModel = new KModel(this);
-    m_pDelegate = new KDelegate(this);
+    m_pViewPtr = new KPopViews(this);
+    m_pViewPtr->setVisible(false);
 
-    this->setItemDelegate(m_pDelegate);
-    this->setModel(m_pModel);
-    this->setView(m_pView);
+    connect(m_pViewPtr, &KPopViews::selectItemFinished,
+            [this](const QVariant &v){
+        this->clear();
+        this->addItem(v.toString());
+    });
+}
 
-    // test data
-    VTR_ModelData tmpData;
-    for(int i = 0; i < 100; i++)
-    {
-        KModelData itemData;
-        itemData.setKey(QString::number(i));
-        itemData.setValue(QString("value%1").arg(i));
-
-        for(int j = 0; j < 20; j++)
-        {
-            KModelData subItem;
-            subItem.setKey(QString::number(i+j));
-            subItem.setValue(QString("value%1%2").arg(i).arg(j));
-            itemData.m_vtrChildData.push_back(subItem);
-        }
-
-        tmpData.push_back(itemData);
-    }
-    m_pModel->loadData(tmpData);
+void KCombox::setModelData(const VTR_ModelData &data)
+{
+    m_pViewPtr->loadModelData(data);
 }
 
 void KCombox::showPopup()
 {
-    QComboBox::showPopup();
+    //QComboBox::showPopup();
+
+    QPoint pt = this->mapToGlobal(QPoint{0,0});
+
+    m_pViewPtr->move(pt.x(), pt.y() + this->height());
+
+    m_pViewPtr->showPopupView(QSize(this->width(), 240));
 }
 
 KComboBox::KComboBox(QWidget *parent)

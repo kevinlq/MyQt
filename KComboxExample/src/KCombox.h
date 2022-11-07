@@ -4,21 +4,20 @@
 #include <QPushButton>
 #include <QLineEdit>
 
-class KListView;
-class KModel;
-class KDelegate;
+#include "KPopViews.h"
+
 class KCombox : public QComboBox
 {
     Q_OBJECT
 public:
     explicit KCombox(QWidget *parent = Q_NULLPTR);
 
+    void setModelData(const VTR_ModelData &data);
+
     void showPopup() override;
 
 private:
-    KListView *m_pView = nullptr;
-    KModel *m_pModel = nullptr;
-    KDelegate *m_pDelegate = nullptr;
+    KPopViews   *m_pViewPtr = nullptr;
 };
 
 class KComboBox : public QWidget

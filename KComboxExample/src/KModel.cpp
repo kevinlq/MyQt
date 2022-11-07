@@ -14,16 +14,18 @@ KModelData::~KModelData()
 
 KModelData::KModelData(const KModelData &other)
 {
-    this->m_key     = other.m_key;
-    this->m_value   = other.m_value;
+    this->m_key             = other.m_key;
+    this->m_value           = other.m_value;
+    this->m_vtrChildData    = other.m_vtrChildData;
 }
 
 KModelData &KModelData::operator =(const KModelData &other)
 {
     if (this != &other)
     {
-        this->m_key     = other.m_key;
-        this->m_value   = other.m_value;
+        this->m_key             = other.m_key;
+        this->m_value           = other.m_value;
+        this->m_vtrChildData    = other.m_vtrChildData;
     }
 
     return *this;
@@ -86,7 +88,7 @@ QVariant KModel::data(const QModelIndex &index, int role) const
         int nRow = index.row();
         if (nRow >= 0 && nRow < m_vtrModelData.count())
         {
-            return QVariant::fromValue((m_vtrModelData[nRow]));
+            return QVariant::fromValue((void*)&m_vtrModelData[nRow]);
         }
     }
     else if (role == Qt::TextAlignmentRole)

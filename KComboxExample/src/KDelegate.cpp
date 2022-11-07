@@ -20,18 +20,19 @@ void KDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, con
 
     QStyledItemDelegate::paint(painter, viewOption, index);
 
-    QVariant v = index.data();
-    if (!v.canConvert<KModelData>())
+    if (!index.data().canConvert<void*>())
     {
         qDebug() << "fail." << index;
         return;
     }
 
-    KModelData pModelData = (v.value<KModelData>());
+    KModelData *pModelData = (KModelData*)index.data().value<void*>();
+    if(nullptr == pModelData)
+    {
+        return;
+    }
 
-    qDebug() << pModelData.key() << pModelData.value() << this << index;
-
-    painter->drawText(option.rect, pModelData.value());
+    painter->drawText(option.rect, Qt::AlignHCenter | Qt::AlignVCenter, pModelData->value());
 }
 
 QSize KDelegate::sizeHint(const QStyleOptionViewItem &, const QModelIndex &) const

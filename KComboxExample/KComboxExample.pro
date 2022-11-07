@@ -14,7 +14,8 @@ SOURCES += \
     src/KCombox.cpp \
     src/KDelegate.cpp \
     src/KListView.cpp \
-    src/KModel.cpp
+    src/KModel.cpp \
+    src/KPopViews.cpp
 
 HEADERS += \
     Widget.h \
@@ -22,7 +23,8 @@ HEADERS += \
     src/KCombox.h \
     src/KDelegate.h \
     src/KListView.h \
-    src/KModel.h
+    src/KModel.h \
+    src/KPopViews.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

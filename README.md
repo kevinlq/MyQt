@@ -135,6 +135,12 @@ pagecount=(recordcount-1)/pagesize
 此方法得出的结果为实际页码-1
 ```
 
+## 13. 多级下拉框组件
+
+一般用于显示行政区域使用，比如陕西省、西安市、长安区
+
+![mul_combox_demo](/screen/mul_combox_demo.png)
+
 # change log
 
 - V0.0.6 添加python和Qt混合编程demo(PythonQtDemo);
@@ -143,3 +149,4 @@ pagecount=(recordcount-1)/pagesize
 - V0.0.9 添加多线程demo
 - V0.1.0 添加QImage操作图像素
 - V0.1.1 添加QListWidget分页排序
+- V0.1.2  添加多级下拉框组件使用示例
